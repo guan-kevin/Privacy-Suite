@@ -147,9 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				0A32692226A5292F00D99744 /* ContentView.swift */,
-				0A9EFB6826A9292B003A72BF /* NoteView.swift */,
 				0A9EFB6B26A929D9003A72BF /* LockedView.swift */,
 				0A9EFB6E26A92B82003A72BF /* NotesView.swift */,
+				0A9EFB6826A9292B003A72BF /* NoteView.swift */,
 				0A32692C26A5293300D99744 /* Info.plist */,
 			);
 			path = iOS;
@@ -159,9 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				0A32695026A53F4A00D99744 /* ContentView.swift */,
-				0A32695326A5422000D99744 /* NoteView.swift */,
 				0A3BC05226A8BC540030EFEB /* LockedView.swift */,
 				0A32694D26A53E1E00D99744 /* NotesView.swift */,
+				0A32695326A5422000D99744 /* NoteView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);

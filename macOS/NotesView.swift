@@ -12,13 +12,21 @@ struct NotesView: View {
     @EnvironmentObject var storage: NoteItemStorage
 
     var body: some View {
-        List(selection: self.$storage.selection) {
-            ForEach(storage.notes) { item in
-                NavigationLink(destination: LazyView(NoteView(item: item)), tag: item.id, selection: $storage.selection) {
-                    Text(item.getTitle())
+        Group {
+            if storage.notes.count == 0 {
+                Text("You don't have any notes")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+            } else {
+                List(selection: self.$storage.selection) {
+                    ForEach(storage.notes) { item in
+                        NavigationLink(destination: LazyView(NoteView(item: item)), tag: item.id, selection: $storage.selection) {
+                            Text(item.getTitle())
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
                 }
             }
-            .onDelete(perform: deleteItems)
         }
         .background(
             NavigationLink(destination: Text("Select an item!"), tag: storage.defaultSelection, selection: $storage.selection) {

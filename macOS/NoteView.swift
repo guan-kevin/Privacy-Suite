@@ -42,6 +42,7 @@ struct NoteView: View {
 
             Spacer()
         }
+        .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
                 Button(action: {
@@ -56,7 +57,10 @@ struct NoteView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .onChange(of: item.lastEdited, perform: { _ in
+            self.title = item.getTitle()
+            self.content = item.getContent()
+        })
         .onAppear {
             self.title = item.getTitle()
             self.content = item.getContent()

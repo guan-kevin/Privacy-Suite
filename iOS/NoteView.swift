@@ -33,6 +33,7 @@ struct NoteView: View {
 
             Spacer()
         }
+        .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("\(item.lastEdited ?? Date(), formatter: itemFormatter)")
@@ -40,11 +41,15 @@ struct NoteView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: item.lastEdited, perform: { _ in
+            self.title = item.getTitle()
+            self.content = item.getContent()
+        })
         .onAppear {
             self.title = item.getTitle()
             self.content = item.getContent()
         }
-        .onDisappear() {
+        .onDisappear {
             save()
         }
     }

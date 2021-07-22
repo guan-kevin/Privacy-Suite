@@ -116,7 +116,7 @@ struct LockedView: View {
             Text("Welcome")
                 .font(.system(.title, design: .rounded))
 
-            Text("You need to enter the password to decrypt your data")
+            Text("Set a password to encrypt your data")
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .font(.headline)
