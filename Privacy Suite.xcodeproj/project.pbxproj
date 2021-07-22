@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,14 +12,41 @@
 		0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */; };
 		0A32693826A5293300D99744 /* Privacy_SuiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */; };
 		0A32693926A5293300D99744 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692226A5292F00D99744 /* ContentView.swift */; };
-		0A32693A26A5293300D99744 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692226A5292F00D99744 /* ContentView.swift */; };
 		0A32693B26A5293300D99744 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692326A5292F00D99744 /* Persistence.swift */; };
 		0A32693C26A5293300D99744 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692326A5292F00D99744 /* Persistence.swift */; };
 		0A32693D26A5293300D99744 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A32692426A5293300D99744 /* Assets.xcassets */; };
 		0A32693E26A5293300D99744 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A32692426A5293300D99744 /* Assets.xcassets */; };
+		0A32694A26A5298400D99744 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A32694926A5298400D99744 /* CloudKit.framework */; };
+		0A32694C26A529F000D99744 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A32694B26A529F000D99744 /* CloudKit.framework */; };
+		0A32694F26A53E1E00D99744 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32694D26A53E1E00D99744 /* NotesView.swift */; };
+		0A32695226A53F4A00D99744 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32695026A53F4A00D99744 /* ContentView.swift */; };
+		0A32695526A5422000D99744 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32695326A5422000D99744 /* NoteView.swift */; };
+		0A3BC04D26A7F4CB0030EFEB /* NoteItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC04C26A7F4CB0030EFEB /* NoteItemStorage.swift */; };
+		0A3BC04E26A7F4CB0030EFEB /* NoteItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC04C26A7F4CB0030EFEB /* NoteItemStorage.swift */; };
+		0A3BC05026A7F8740030EFEB /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC04F26A7F8740030EFEB /* LazyView.swift */; };
+		0A3BC05126A7F8740030EFEB /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC04F26A7F8740030EFEB /* LazyView.swift */; };
+		0A3BC05426A8BC540030EFEB /* LockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05226A8BC540030EFEB /* LockedView.swift */; };
+		0A3BC05626A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */; };
+		0A3BC05726A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */; };
+		0A3BC05A26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */; };
+		0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */; };
+		0A3BC05C26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
+		0A3BC05D26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
+		0A3BC06326A8C9E70030EFEB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC06226A8C9E70030EFEB /* Note.swift */; };
+		0A3BC06426A8C9E70030EFEB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC06226A8C9E70030EFEB /* Note.swift */; };
+		0A9EFB6126A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
+		0A9EFB6226A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
+		0A9EFB6526A902CA003A72BF /* LockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */; };
+		0A9EFB6626A902CA003A72BF /* LockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */; };
+		0A9EFB6926A9292B003A72BF /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6826A9292B003A72BF /* NoteView.swift */; };
+		0A9EFB6C26A929D9003A72BF /* LockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6B26A929D9003A72BF /* LockedView.swift */; };
+		0A9EFB6F26A92B82003A72BF /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6E26A92B82003A72BF /* NotesView.swift */; };
+		71BCA2C6F510C1D98F92E2C2 /* Pods_Privacy_Suite__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */; };
+		79CDA625FE9F939752A77EA0 /* Pods_Privacy_Suite__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BCBE6766D332C36D3B7F9A /* Pods_Privacy_Suite__iOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0561C12412AB7BC2BF1832B2 /* Pods-Privacy Suite (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		0A32692026A5292F00D99744 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy_SuiteApp.swift; sourceTree = "<group>"; };
 		0A32692226A5292F00D99744 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,6 +57,29 @@
 		0A32693126A5293300D99744 /* Privacy Suite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Privacy Suite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A32693326A5293300D99744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A32693426A5293300D99744 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		0A32694726A5298000D99744 /* Privacy Suite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Privacy Suite.entitlements"; sourceTree = "<group>"; };
+		0A32694926A5298400D99744 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		0A32694B26A529F000D99744 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0A32694D26A53E1E00D99744 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		0A32695026A53F4A00D99744 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0A32695326A5422000D99744 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		0A3BC04C26A7F4CB0030EFEB /* NoteItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteItemStorage.swift; sourceTree = "<group>"; };
+		0A3BC04F26A7F8740030EFEB /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		0A3BC05226A8BC540030EFEB /* LockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedView.swift; sourceTree = "<group>"; };
+		0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionHelper.swift; sourceTree = "<group>"; };
+		0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0A3BC06226A8C9E70030EFEB /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		0A9EFB6026A9018C003A72BF /* ValetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValetController.swift; sourceTree = "<group>"; };
+		0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedViewModel.swift; sourceTree = "<group>"; };
+		0A9EFB6826A9292B003A72BF /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		0A9EFB6B26A929D9003A72BF /* LockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedView.swift; sourceTree = "<group>"; };
+		0A9EFB6E26A92B82003A72BF /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Privacy_Suite__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		677B1E7FC34C2D956553E3CD /* Pods-Privacy Suite (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (iOS).release.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		879CAAC4A6E160C73AD77834 /* Pods-Privacy Suite (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		98BCBE6766D332C36D3B7F9A /* Pods_Privacy_Suite__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Privacy_Suite__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A16CFA091D6BE535DA6D36FD /* Pods-Privacy Suite (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (macOS).release.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A32694A26A5298400D99744 /* CloudKit.framework in Frameworks */,
+				79CDA625FE9F939752A77EA0 /* Pods_Privacy_Suite__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A32694C26A529F000D99744 /* CloudKit.framework in Frameworks */,
+				71BCA2C6F510C1D98F92E2C2 /* Pods_Privacy_Suite__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,10 +107,13 @@
 		0A32691926A5292F00D99744 = {
 			isa = PBXGroup;
 			children = (
+				0A32694726A5298000D99744 /* Privacy Suite.entitlements */,
 				0A32691E26A5292F00D99744 /* Shared */,
 				0A32692B26A5293300D99744 /* iOS */,
 				0A32693226A5293300D99744 /* macOS */,
 				0A32692A26A5293300D99744 /* Products */,
+				0A32694826A5298400D99744 /* Frameworks */,
+				9FDCC48142F3FE31D1B8B5C9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,10 +121,15 @@
 			isa = PBXGroup;
 			children = (
 				0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */,
-				0A32692226A5292F00D99744 /* ContentView.swift */,
+				0A3BC05E26A8C4C60030EFEB /* CoreData */,
+				0A9EFB6726A902D4003A72BF /* View Models */,
+				0A3BC06526A8CA270030EFEB /* Models */,
+				0A9EFB6326A90221003A72BF /* Views */,
 				0A32692326A5292F00D99744 /* Persistence.swift */,
 				0A32692426A5293300D99744 /* Assets.xcassets */,
 				0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */,
+				0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */,
+				0A9EFB6026A9018C003A72BF /* ValetController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -84,6 +146,10 @@
 		0A32692B26A5293300D99744 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0A32692226A5292F00D99744 /* ContentView.swift */,
+				0A9EFB6826A9292B003A72BF /* NoteView.swift */,
+				0A9EFB6B26A929D9003A72BF /* LockedView.swift */,
+				0A9EFB6E26A92B82003A72BF /* NotesView.swift */,
 				0A32692C26A5293300D99744 /* Info.plist */,
 			);
 			path = iOS;
@@ -92,10 +158,70 @@
 		0A32693226A5293300D99744 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				0A32695026A53F4A00D99744 /* ContentView.swift */,
+				0A32695326A5422000D99744 /* NoteView.swift */,
+				0A3BC05226A8BC540030EFEB /* LockedView.swift */,
+				0A32694D26A53E1E00D99744 /* NotesView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		0A32694826A5298400D99744 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A32694B26A529F000D99744 /* CloudKit.framework */,
+				0A32694926A5298400D99744 /* CloudKit.framework */,
+				98BCBE6766D332C36D3B7F9A /* Pods_Privacy_Suite__iOS_.framework */,
+				0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0A3BC05E26A8C4C60030EFEB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */,
+				0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		0A3BC06526A8CA270030EFEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A3BC06226A8C9E70030EFEB /* Note.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0A9EFB6326A90221003A72BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A3BC04F26A7F8740030EFEB /* LazyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A9EFB6726A902D4003A72BF /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */,
+				0A3BC04C26A7F4CB0030EFEB /* NoteItemStorage.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		9FDCC48142F3FE31D1B8B5C9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				879CAAC4A6E160C73AD77834 /* Pods-Privacy Suite (iOS).debug.xcconfig */,
+				677B1E7FC34C2D956553E3CD /* Pods-Privacy Suite (iOS).release.xcconfig */,
+				0561C12412AB7BC2BF1832B2 /* Pods-Privacy Suite (macOS).debug.xcconfig */,
+				A16CFA091D6BE535DA6D36FD /* Pods-Privacy Suite (macOS).release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A32694126A5293300D99744 /* Build configuration list for PBXNativeTarget "Privacy Suite (iOS)" */;
 			buildPhases = (
+				D2EF443C6F67ACDE210A00C6 /* [CP] Check Pods Manifest.lock */,
 				0A32692526A5293300D99744 /* Sources */,
 				0A32692626A5293300D99744 /* Frameworks */,
 				0A32692726A5293300D99744 /* Resources */,
+				2E19C6B501FB573F974C101B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A32694426A5293300D99744 /* Build configuration list for PBXNativeTarget "Privacy Suite (macOS)" */;
 			buildPhases = (
+				C81D073245D934B1D010B933 /* [CP] Check Pods Manifest.lock */,
 				0A32692D26A5293300D99744 /* Sources */,
 				0A32692E26A5293300D99744 /* Frameworks */,
 				0A32692F26A5293300D99744 /* Resources */,
+				C732580D79945AF165F4F165 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,15 +320,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2E19C6B501FB573F974C101B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C732580D79945AF165F4F165 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C81D073245D934B1D010B933 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Privacy Suite (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2EF443C6F67ACDE210A00C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Privacy Suite (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A32692526A5293300D99744 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0A32693526A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
+				0A9EFB6126A9018C003A72BF /* ValetController.swift in Sources */,
+				0A3BC05626A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */,
 				0A32693B26A5293300D99744 /* Persistence.swift in Sources */,
 				0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
+				0A9EFB6C26A929D9003A72BF /* LockedView.swift in Sources */,
+				0A3BC04D26A7F4CB0030EFEB /* NoteItemStorage.swift in Sources */,
 				0A32693926A5293300D99744 /* ContentView.swift in Sources */,
+				0A3BC05A26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
+				0A3BC05026A7F8740030EFEB /* LazyView.swift in Sources */,
+				0A9EFB6926A9292B003A72BF /* NoteView.swift in Sources */,
+				0A3BC05C26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */,
+				0A9EFB6526A902CA003A72BF /* LockedViewModel.swift in Sources */,
+				0A9EFB6F26A92B82003A72BF /* NotesView.swift in Sources */,
+				0A3BC06326A8C9E70030EFEB /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,10 +428,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3BC05726A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */,
+				0A3BC04E26A7F4CB0030EFEB /* NoteItemStorage.swift in Sources */,
+				0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
 				0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
+				0A32695226A53F4A00D99744 /* ContentView.swift in Sources */,
+				0A9EFB6626A902CA003A72BF /* LockedViewModel.swift in Sources */,
+				0A3BC06426A8C9E70030EFEB /* Note.swift in Sources */,
+				0A9EFB6226A9018C003A72BF /* ValetController.swift in Sources */,
+				0A32695526A5422000D99744 /* NoteView.swift in Sources */,
+				0A3BC05126A7F8740030EFEB /* LazyView.swift in Sources */,
 				0A32693C26A5293300D99744 /* Persistence.swift in Sources */,
+				0A3BC05D26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */,
+				0A3BC05426A8BC540030EFEB /* LockedView.swift in Sources */,
+				0A32694F26A53E1E00D99744 /* NotesView.swift in Sources */,
 				0A32693826A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
-				0A32693A26A5293300D99744 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,9 +562,11 @@
 		};
 		0A32694226A5293300D99744 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 879CAAC4A6E160C73AD77834 /* Pods-Privacy Suite (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Privacy Suite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RB73R3H3RF;
 				ENABLE_PREVIEWS = YES;
@@ -351,9 +586,11 @@
 		};
 		0A32694326A5293300D99744 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 677B1E7FC34C2D956553E3CD /* Pods-Privacy Suite (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Privacy Suite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RB73R3H3RF;
 				ENABLE_PREVIEWS = YES;
@@ -374,6 +611,7 @@
 		};
 		0A32694526A5293300D99744 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0561C12412AB7BC2BF1832B2 /* Pods-Privacy Suite (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -398,6 +636,7 @@
 		};
 		0A32694626A5293300D99744 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A16CFA091D6BE535DA6D36FD /* Pods-Privacy Suite (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

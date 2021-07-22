@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="ConfigItem" representedClassName="ConfigItem" syncable="YES" codeGenerationType="class">
+        <attribute name="password" attributeType="String" defaultValueString=""/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="NoteItem" representedClassName="NoteItem" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" valueTransformerName="EncryptedDataTransformer" defaultValueString=""/>
+        <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="631180800" usesScalarValueType="NO"/>
+        <attribute name="lastEdited" attributeType="Date" defaultDateTimeInterval="631180800" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String" valueTransformerName="EncryptedDataTransformer" defaultValueString="Untitled"/>
+    </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Item" positionX="-1.7559814453125" positionY="-91.00421142578125" width="128" height="44"/>
+        <element name="NoteItem" positionX="198.0943603515625" positionY="-9.24005126953125" width="128" height="103"/>
+        <element name="ConfigItem" positionX="-63" positionY="18" width="128" height="44"/>
     </elements>
 </model>
