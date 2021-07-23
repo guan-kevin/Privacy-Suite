@@ -90,6 +90,8 @@ class NoteItemStorage: NSObject, ObservableObject {
                     newItem.lastEdited = Date()
                     newItem.dateCreated = Date()
                     PersistenceController.shared.save()
+
+                    self.selection = newItem.id
                 } else {
                     print("Encrypt failed!!!")
                 }
@@ -109,7 +111,6 @@ class NoteItemStorage: NSObject, ObservableObject {
     func delete(by item: NoteItem) {
         PersistenceController.shared.container.viewContext.perform {
             PersistenceController.shared.container.viewContext.delete(item)
-
             PersistenceController.shared.save()
         }
     }

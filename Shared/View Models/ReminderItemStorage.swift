@@ -85,9 +85,9 @@ class ReminderItemStorage: NSObject, ObservableObject {
         }
     }
 
-    func deleteList(id: ObjectIdentifier) {
+    func deleteList(name: String) {
         for i in list {
-            if i.id == id {
+            if i.name == name {
                 PersistenceController.shared.container.viewContext.perform {
                     PersistenceController.shared.container.viewContext.delete(i)
                     PersistenceController.shared.save()

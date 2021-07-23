@@ -14,8 +14,7 @@ struct RemindersView: View {
     @State var showAddList = false
     @State var showAddError = false
 
-    @State var showDeleteList = false
-    @State var deleteID: ObjectIdentifier? = nil
+    @State var selectedDeleteList: ReminderListItem? = nil
 
     var body: some View {
         Group {
@@ -32,12 +31,11 @@ struct RemindersView: View {
                     }
                     .onDelete { indexSet in
                         for index in indexSet {
-                            deleteID = storage.list[index].id
-                            showDeleteList = true
+                            selectedDeleteList = storage.list[index]
                         }
                     }
                 }
-                .listStyle(PlainListStyle())
+                .listStyle(InsetGroupedListStyle())
             }
         }
         .navigationBarTitleDisplayMode(.automatic)
@@ -57,9 +55,9 @@ struct RemindersView: View {
 
                 Text("")
                     .frame(width: 0, height: 0)
-                    .alert(isPresented: $showDeleteList, content: {
-                        Alert(title: Text("Are you sure you want to delete this list and all the reminders inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
-                            deleteList()
+                    .alert(item: $selectedDeleteList, content: { item in
+                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the reminders inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                            deleteList(name: item.listName)
                         }))
                     })
             }
@@ -106,13 +104,13 @@ struct RemindersView: View {
         showAddError = true
     }
 
-    private func deleteList() {
-        guard let deleteID = deleteID else { return }
-        
+    private func deleteList(name: String) {
+        selectedDeleteList = nil
+
         if UIDevice.current.userInterfaceIdiom == .pad {
-//            presentationMode.wrappedValue.dismiss()
+            presentationMode.wrappedValue.dismiss()
             for i in 0 ..< storage.list.count {
-                if storage.list[i].id == deleteID {
+                if storage.list[i].listName == name {
                     if i == 0 {
                         if storage.list.count <= 1 {
                             // deleting the last item
@@ -129,7 +127,6 @@ struct RemindersView: View {
             }
         }
 
-        showDeleteList = false
-        storage.deleteList(id: deleteID)
+        storage.deleteList(name: name)
     }
 }

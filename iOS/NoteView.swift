@@ -79,21 +79,25 @@ struct NoteView: View {
     func delete() {
         presentationMode.wrappedValue.dismiss()
 
-        for i in 0 ..< storage.notes.count {
-            if storage.notes[i].id == item.id {
-                if i == 0 {
-                    if storage.notes.count <= 1 {
-                        // deleting the last item
-                        storage.selection = storage.defaultSelection
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            for i in 0 ..< storage.notes.count {
+                if storage.notes[i].id == item.id {
+                    if i == 0 {
+                        if storage.notes.count <= 1 {
+                            // deleting the last item
+                            storage.selection = storage.defaultSelection
+                        } else {
+                            // deleting the first but not last
+                            storage.selection = storage.notes[1].id
+                        }
                     } else {
-                        // deleting the first but not last
-                        storage.selection = storage.notes[1].id
+                        storage.selection = storage.notes[i - 1].id
                     }
-                } else {
-                    storage.selection = storage.notes[i - 1].id
+                    break
                 }
-                break
             }
+        } else {
+            storage.selection = nil
         }
 
         storage.delete(by: item)

@@ -18,11 +18,11 @@ struct ContentView: View {
                 } else if selectedTab == 1 {
                     RemindersView()
                 } else if selectedTab == 2 {
-                    CalenderView()
+                    CalendarView()
                 }
             }
             .listStyle(SidebarListStyle())
-            .frame(minWidth: 220, maxWidth: 220)
+            .frame(minWidth: 220)
             .toolbar {
                 ToolbarItemGroup {
                     Button(action: {
@@ -49,7 +49,7 @@ struct ContentView: View {
                         Button(action: {
                             selectedTab = 2
                         }) {
-                            Text("Calender")
+                            Text("Calendar")
                         }
                     }
                     label: {
@@ -76,7 +76,7 @@ struct ContentView: View {
         case 1:
             return "Reminders"
         case 2:
-            return "Calender"
+            return "Calendar"
         default:
             return "Default"
         }

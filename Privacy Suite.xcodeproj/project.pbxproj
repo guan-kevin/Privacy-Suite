@@ -42,8 +42,8 @@
 		0A9EFB6C26A929D9003A72BF /* LockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6B26A929D9003A72BF /* LockedView.swift */; };
 		0A9EFB6F26A92B82003A72BF /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6E26A92B82003A72BF /* NotesView.swift */; };
 		0AD4231626AA1E6300D9C91A /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231426AA1E2700D9C91A /* RemindersView.swift */; };
-		0AD4231E26AA1E9F00D9C91A /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231B26AA1E8A00D9C91A /* CalenderView.swift */; };
-		0AD4231F26AA1EA100D9C91A /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231826AA1E7B00D9C91A /* CalenderView.swift */; };
+		0AD4231E26AA1E9F00D9C91A /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231B26AA1E8A00D9C91A /* CalendarView.swift */; };
+		0AD4231F26AA1EA100D9C91A /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231826AA1E7B00D9C91A /* CalendarView.swift */; };
 		0AD4233426AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233026AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift */; };
 		0AD4233526AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233026AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift */; };
 		0AD4233626AA24E700D9C91A /* ReminderListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233126AA24E700D9C91A /* ReminderListItem+CoreDataProperties.swift */; };
@@ -95,8 +95,8 @@
 		0A9EFB6E26A92B82003A72BF /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		0AD4231226AA1E1D00D9C91A /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		0AD4231426AA1E2700D9C91A /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
-		0AD4231826AA1E7B00D9C91A /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
-		0AD4231B26AA1E8A00D9C91A /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		0AD4231826AA1E7B00D9C91A /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		0AD4231B26AA1E8A00D9C91A /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0AD4233026AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0AD4233126AA24E700D9C91A /* ReminderListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0AD4233226AA24E700D9C91A /* ReminderItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderItem+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				0A9EFB6E26A92B82003A72BF /* NotesView.swift */,
 				0A9EFB6826A9292B003A72BF /* NoteView.swift */,
 				0AD4231226AA1E1D00D9C91A /* RemindersView.swift */,
-				0AD4231B26AA1E8A00D9C91A /* CalenderView.swift */,
+				0AD4231B26AA1E8A00D9C91A /* CalendarView.swift */,
 				0A32692C26A5293300D99744 /* Info.plist */,
 			);
 			path = iOS;
@@ -194,7 +194,7 @@
 				0A32694D26A53E1E00D99744 /* NotesView.swift */,
 				0A32695326A5422000D99744 /* NoteView.swift */,
 				0AD4231426AA1E2700D9C91A /* RemindersView.swift */,
-				0AD4231826AA1E7B00D9C91A /* CalenderView.swift */,
+				0AD4231826AA1E7B00D9C91A /* CalendarView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);
@@ -456,7 +456,7 @@
 				0AD4234326AA4A6700D9C91A /* ReminderListView.swift in Sources */,
 				0A3BC05626A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */,
 				0AD4234026AA41D800D9C91A /* DialogTextField.swift in Sources */,
-				0AD4231E26AA1E9F00D9C91A /* CalenderView.swift in Sources */,
+				0AD4231E26AA1E9F00D9C91A /* CalendarView.swift in Sources */,
 				0AD4233A26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */,
 				0A32693B26A5293300D99744 /* Persistence.swift in Sources */,
 				0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
@@ -484,7 +484,7 @@
 				0AD4233726AA24E700D9C91A /* ReminderListItem+CoreDataProperties.swift in Sources */,
 				0AD4233926AA24E700D9C91A /* ReminderItem+CoreDataClass.swift in Sources */,
 				0AD4234426AA4A6700D9C91A /* ReminderListView.swift in Sources */,
-				0AD4231F26AA1EA100D9C91A /* CalenderView.swift in Sources */,
+				0AD4231F26AA1EA100D9C91A /* CalendarView.swift in Sources */,
 				0AD4234126AA41D800D9C91A /* DialogTextField.swift in Sources */,
 				0AD4231626AA1E6300D9C91A /* RemindersView.swift in Sources */,
 				0AD4233B26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */,

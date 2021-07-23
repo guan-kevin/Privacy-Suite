@@ -10,6 +10,8 @@ import SwiftUI
 struct NotesView: View {
     @EnvironmentObject var storage: NoteItemStorage
 
+    @State var showAddNote = false
+
     var body: some View {
         Group {
             if storage.notes.count == 0 {
@@ -32,24 +34,35 @@ struct NotesView: View {
             }
             .hidden()
         )
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: {
+                    showAddNote = true
+                }) {
+                    Label("Add Item", systemImage: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $showAddNote, content: {
+            DialogTextField(title: "New Note", textFieldTitle: "Title") { result in
+                guard result != "" else {
+                    return
+                }
+
+                addNewNote(title: result)
+            }
+        })
         .onAppear {
             storage.selection = storage.notes.first?.id
         }
         .onDisappear {
             storage.selection = storage.defaultSelection
         }
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
-                }
-            }
-        }
     }
 
-    private func addItem() {
+    private func addNewNote(title: String) {
         withAnimation {
-            storage.add(title: "This is a title", content: "This is a body")
+            storage.add(title: title, content: "")
         }
     }
 }

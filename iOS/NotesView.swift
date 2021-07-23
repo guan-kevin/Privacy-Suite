@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct NotesView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var storage: NoteItemStorage
+
+    @State var showAddNote = false
 
     var body: some View {
         Group {
@@ -25,6 +26,7 @@ struct NotesView: View {
                         }
                     }
                 }
+                .listStyle(InsetGroupedListStyle())
             }
         }
         .navigationBarTitleDisplayMode(.automatic)
@@ -35,6 +37,24 @@ struct NotesView: View {
             }
             .hidden()
         )
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showAddNote = true
+                }) {
+                    Label("Add Item", systemImage: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $showAddNote, content: {
+            DialogTextField(title: "New Note", textFieldTitle: "Title") { result in
+                guard result != "" else {
+                    return
+                }
+
+                addNewNote(title: result)
+            }
+        })
         .onAppear {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 storage.selection = storage.notes.first?.id
@@ -45,24 +65,11 @@ struct NotesView: View {
                 storage.selection = storage.defaultSelection
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
-                }
-            }
-        }
     }
 
-    private func addItem() {
+    private func addNewNote(title: String) {
         withAnimation {
-            storage.add(title: "This is a title", content: "This is a body")
+            storage.add(title: title, content: "")
         }
     }
-
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            storage.delete(by: offsets)
-//        }
-//    }
 }

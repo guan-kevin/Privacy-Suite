@@ -13,14 +13,33 @@ struct ReminderListView: View {
     @State var item: ReminderListItem
 
     var body: some View {
-        if item.reminderArray.count == 0 {
-            Text("No reminder in this list")
-        } else {
-            List {
-                ForEach(item.reminderArray) { reminder in
-                    Text(reminder.getTitle())
+        Group {
+            if item.reminderArray.count == 0 {
+                Text("No reminder in this list")
+            } else {
+                List {
+                    ForEach(item.reminderArray) { reminder in
+                        Text(reminder.getTitle())
+                    }
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: getToolbarItemPlacement()) {
+                Button(action: {
+//                    showAddList.toggle()
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+    }
+
+    func getToolbarItemPlacement() -> ToolbarItemPlacement {
+        #if os(iOS)
+        return .primaryAction
+        #endif
+
+        return .navigation
     }
 }

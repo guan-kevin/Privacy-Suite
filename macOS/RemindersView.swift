@@ -12,9 +12,7 @@ struct RemindersView: View {
 
     @State var showAddList = false
     @State var showAddError = false
-    
-    @State var showDeleteList = false
-    @State var deleteID: ObjectIdentifier? = nil
+    @State var selectedDeleteList: ReminderListItem? = nil
 
     var body: some View {
         Group {
@@ -23,19 +21,32 @@ struct RemindersView: View {
                     .multilineTextAlignment(.center)
                     .font(.headline)
             } else {
-                List(selection: self.$storage.selection) {
-                    ForEach(storage.list) { item in
-                        NavigationLink(destination: LazyView(ReminderListView(item: item)), tag: item.id, selection: $storage.selection) {
-                            Text(item.listName)
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                deleteID = item.id
-                                showDeleteList = true
-                            }) {
-                                Text("Delete")
+                VStack(spacing: 0) {
+                    List(selection: self.$storage.selection) {
+                        ForEach(storage.list) { item in
+                            NavigationLink(destination: LazyView(ReminderListView(item: item)), tag: item.id, selection: $storage.selection) {
+                                Text(item.listName)
+                            }
+                            .contextMenu {
+                                Button(action: {
+                                    selectedDeleteList = item
+                                }) {
+                                    Text("Delete")
+                                }
                             }
                         }
+                    }
+
+                    HStack {
+                        Button(action: {
+                            showAddList = true
+                        }) {
+                            Label("Add List", systemImage: "plus.circle")
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(8)
+
+                        Spacer()
                     }
                 }
             }
@@ -55,9 +66,9 @@ struct RemindersView: View {
 
                 Text("")
                     .frame(width: 0, height: 0)
-                    .alert(isPresented: $showDeleteList, content: {
-                        Alert(title: Text("Are you sure you want to delete this list and all the reminders inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
-                            deleteList()
+                    .alert(item: $selectedDeleteList, content: { item in
+                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the reminders inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                            deleteList(name: item.listName)
                         }))
                     })
             }
@@ -77,15 +88,6 @@ struct RemindersView: View {
         .onDisappear {
             storage.selection = storage.defaultSelection
         }
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button(action: {
-                    showAddList.toggle()
-                }) {
-                    Image(systemName: "plus")
-                }
-            }
-        }
     }
 
     private func addNewList(name: String) {
@@ -99,10 +101,11 @@ struct RemindersView: View {
         showAddError = true
     }
 
-    private func deleteList() {
-        guard let deleteID = deleteID else { return }
+    private func deleteList(name: String) {
+        selectedDeleteList = nil
+
         for i in 0 ..< storage.list.count {
-            if storage.list[i].id == deleteID {
+            if storage.list[i].listName == name {
                 if i == 0 {
                     if storage.list.count <= 1 {
                         // deleting the last item
@@ -118,7 +121,6 @@ struct RemindersView: View {
             }
         }
 
-        showDeleteList = false
-        storage.deleteList(id: deleteID)
+        storage.deleteList(name: name)
     }
 }
