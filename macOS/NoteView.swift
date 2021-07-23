@@ -10,11 +10,13 @@ import SwiftUI
 
 struct NoteView: View {
     @EnvironmentObject var storage: NoteItemStorage
-    private let tabs = ["Notes", "Reminders", "Calendar"]
+
     @State var item: NoteItem
 
     @State var title: String = ""
     @State var content: String = ""
+
+    @State var showDeleteAlert = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -46,17 +48,17 @@ struct NoteView: View {
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
                 Button(action: {
-                    if item.id == storage.notes.first?.id {
-                        storage.selection = storage.defaultSelection
-                    } else {
-                        storage.selection = storage.notes.first?.id
-                    }
-                    storage.delete(by: item)
+                    showDeleteAlert = true
                 }) {
-                    Text("Delete")
+                    Image(systemName: "trash")
                 }
             }
         }
+        .alert(isPresented: $showDeleteAlert, content: {
+            Alert(title: Text("Are you sure you want to delete this note?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                delete()
+            }))
+        })
         .onChange(of: item.lastEdited, perform: { _ in
             self.title = item.getTitle()
             self.content = item.getContent()
@@ -74,6 +76,27 @@ struct NoteView: View {
         if content != item.getContent() {
             storage.edit(item: item, title: title, content: content)
         }
+    }
+
+    func delete() {
+        for i in 0 ..< storage.notes.count {
+            if storage.notes[i].id == item.id {
+                if i == 0 {
+                    if storage.notes.count <= 1 {
+                        // deleting the last item
+                        storage.selection = storage.defaultSelection
+                    } else {
+                        // deleting the first but not last
+                        storage.selection = storage.notes[1].id
+                    }
+                } else {
+                    storage.selection = storage.notes[i - 1].id
+                }
+                break
+            }
+        }
+
+        storage.delete(by: item)
     }
 }
 

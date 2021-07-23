@@ -21,6 +21,13 @@ public extension NoteItem {
 }
 
 extension NoteItem: Identifiable {
+    static var getFetchRequest: NSFetchRequest<NoteItem> {
+        let request: NSFetchRequest<NoteItem> = NoteItem.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \NoteItem.lastEdited, ascending: false)]
+
+        return request
+    }
+
     func getTitle() -> String {
         if decryptedTitle == nil || encryptedTitle != title {
             encryptedTitle = title

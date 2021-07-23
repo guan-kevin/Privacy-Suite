@@ -12,9 +12,23 @@
         <attribute name="lastEdited" attributeType="Date" defaultDateTimeInterval="631180800" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String" valueTransformerName="EncryptedDataTransformer" defaultValueString="Untitled"/>
     </entity>
+    <entity name="ReminderItem" representedClassName="ReminderItem" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="631180800" usesScalarValueType="NO"/>
+        <attribute name="notes" attributeType="String" defaultValueString=""/>
+        <attribute name="priority" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReminderListItem" inverseName="reminders" inverseEntity="ReminderListItem"/>
+    </entity>
+    <entity name="ReminderListItem" representedClassName="ReminderListItem" syncable="YES">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="reminders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReminderItem" inverseName="list" inverseEntity="ReminderItem"/>
+    </entity>
     <elements>
+        <element name="ConfigItem" positionX="-26.29931640625" positionY="18" width="128" height="44"/>
         <element name="Item" positionX="-1.7559814453125" positionY="-91.00421142578125" width="128" height="44"/>
         <element name="NoteItem" positionX="198.0943603515625" positionY="-9.24005126953125" width="128" height="103"/>
-        <element name="ConfigItem" positionX="-63" positionY="18" width="128" height="44"/>
+        <element name="ReminderItem" positionX="-31.0703125" positionY="216.2249145507812" width="128" height="119"/>
+        <element name="ReminderListItem" positionX="-272.5921630859375" positionY="276.4385375976562" width="128" height="73"/>
     </elements>
 </model>

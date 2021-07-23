@@ -13,11 +13,15 @@ struct Privacy_SuiteApp: App {
 
     @Environment(\.scenePhase) var scenePhase
     @StateObject var noteStorage: NoteItemStorage
+    @StateObject var reminderStorage: ReminderItemStorage
     @StateObject var lockedViewModel = LockedViewModel()
 
     init() {
-        let storage = NoteItemStorage(managedObjectContext: PersistenceController.shared.container.viewContext)
-        self._noteStorage = StateObject(wrappedValue: storage)
+        let noteStorage = NoteItemStorage(managedObjectContext: PersistenceController.shared.container.viewContext)
+        self._noteStorage = StateObject(wrappedValue: noteStorage)
+
+        let reminderStorage = ReminderItemStorage(managedObjectContext: PersistenceController.shared.container.viewContext)
+        self._reminderStorage = StateObject(wrappedValue: reminderStorage)
     }
 
     var body: some Scene {
@@ -33,8 +37,10 @@ struct Privacy_SuiteApp: App {
                 ContentView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .environmentObject(noteStorage)
+                    .environmentObject(reminderStorage)
                     .onAppear {
                         noteStorage.fetchNotes()
+                        reminderStorage.fetchList()
                     }
             }
         }

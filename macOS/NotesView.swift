@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NotesView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var storage: NoteItemStorage
 
     var body: some View {
@@ -24,7 +23,6 @@ struct NotesView: View {
                             Text(item.getTitle())
                         }
                     }
-                    .onDelete(perform: deleteItems)
                 }
             }
         }
@@ -52,12 +50,6 @@ struct NotesView: View {
     private func addItem() {
         withAnimation {
             storage.add(title: "This is a title", content: "This is a body")
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            storage.delete(by: offsets)
         }
     }
 }

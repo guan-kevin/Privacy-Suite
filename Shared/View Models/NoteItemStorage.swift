@@ -115,15 +115,6 @@ class NoteItemStorage: NSObject, ObservableObject {
     }
 }
 
-extension NoteItem {
-    static var getFetchRequest: NSFetchRequest<NoteItem> {
-        let request: NSFetchRequest<NoteItem> = NoteItem.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \NoteItem.lastEdited, ascending: false)]
-
-        return request
-    }
-}
-
 extension NoteItemStorage: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         fetchNotes()

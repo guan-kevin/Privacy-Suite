@@ -24,7 +24,6 @@ struct NotesView: View {
                             Text(item.getTitle())
                         }
                     }
-                    .onDelete(perform: deleteItems)
                 }
             }
         }
@@ -61,9 +60,9 @@ struct NotesView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            storage.delete(by: offsets)
-        }
-    }
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            storage.delete(by: offsets)
+//        }
+//    }
 }

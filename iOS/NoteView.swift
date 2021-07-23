@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct NoteView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var storage: NoteItemStorage
 
     @State var item: NoteItem
 
     @State var title: String = ""
     @State var content: String = ""
+
+    @State var showDeleteAlert = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,8 +42,21 @@ struct NoteView: View {
                 Text("\(item.lastEdited ?? Date(), formatter: itemFormatter)")
                     .font(.footnote)
             }
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showDeleteAlert = true
+                }) {
+                    Image(systemName: "trash")
+                }
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: $showDeleteAlert, content: {
+            Alert(title: Text("Are you sure you want to delete this note?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                delete()
+            }))
+        })
         .onChange(of: item.lastEdited, perform: { _ in
             self.title = item.getTitle()
             self.content = item.getContent()
@@ -58,6 +74,29 @@ struct NoteView: View {
         if content != item.getContent() {
             storage.edit(item: item, title: title, content: content)
         }
+    }
+
+    func delete() {
+        presentationMode.wrappedValue.dismiss()
+
+        for i in 0 ..< storage.notes.count {
+            if storage.notes[i].id == item.id {
+                if i == 0 {
+                    if storage.notes.count <= 1 {
+                        // deleting the last item
+                        storage.selection = storage.defaultSelection
+                    } else {
+                        // deleting the first but not last
+                        storage.selection = storage.notes[1].id
+                    }
+                } else {
+                    storage.selection = storage.notes[i - 1].id
+                }
+                break
+            }
+        }
+
+        storage.delete(by: item)
     }
 }
 
