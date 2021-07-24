@@ -282,6 +282,8 @@
 			dependencies = (
 			);
 			name = "Privacy Suite (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "Privacy Suite (iOS)";
 			productReference = 0A32692926A5293300D99744 /* Privacy Suite.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +303,8 @@
 			dependencies = (
 			);
 			name = "Privacy Suite (macOS)";
+			packageProductDependencies = (
+			);
 			productName = "Privacy Suite (macOS)";
 			productReference = 0A32693126A5293300D99744 /* Privacy Suite.app */;
 			productType = "com.apple.product-type.application";
@@ -331,6 +335,8 @@
 				Base,
 			);
 			mainGroup = 0A32691926A5292F00D99744;
+			packageReferences = (
+			);
 			productRefGroup = 0A32692A26A5293300D99744 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

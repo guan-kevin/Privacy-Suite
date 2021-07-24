@@ -10,8 +10,6 @@ import SwiftUI
 struct NotesView: View {
     @EnvironmentObject var storage: NoteItemStorage
 
-    @State var showAddNote = false
-
     var body: some View {
         Group {
             if storage.notes.count == 0 {
@@ -29,40 +27,49 @@ struct NotesView: View {
             }
         }
         .background(
-            NavigationLink(destination: Text("Select an item!"), tag: storage.defaultSelection, selection: $storage.selection) {
+            NavigationLink(destination: SelectNoteView(), tag: storage.defaultSelection, selection: $storage.selection) {
                 EmptyView()
             }
             .hidden()
         )
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button(action: {
-                    showAddNote = true
-                }) {
-                    Label("Add Item", systemImage: "plus")
-                }
-            }
-        }
-        .sheet(isPresented: $showAddNote, content: {
-            DialogTextField(title: "New Note", textFieldTitle: "Title") { result in
-                guard result != "" else {
-                    return
-                }
-
-                addNewNote(title: result)
-            }
-        })
         .onAppear {
-            storage.selection = storage.notes.first?.id
+            if let id = storage.notes.first?.id {
+                storage.selection = id
+            } else {
+                storage.selection = storage.defaultSelection
+            }
         }
         .onDisappear {
             storage.selection = storage.defaultSelection
         }
     }
+}
 
-    private func addNewNote(title: String) {
-        withAnimation {
-            storage.add(title: title, content: "")
-        }
+struct SelectNoteView: View {
+    @EnvironmentObject var storage: NoteItemStorage
+    @State var showAddNote = false
+
+    var body: some View {
+        Text("Select an item!!")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        showAddNote = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddNote, content: {
+                DialogTextField(title: "New Note", textFieldTitle: "Title") { result in
+                    guard result != "" else {
+                        return
+                    }
+
+                    withAnimation {
+                        storage.add(title: result, content: "")
+                    }
+                }
+            })
     }
 }

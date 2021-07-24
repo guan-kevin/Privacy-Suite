@@ -58,7 +58,11 @@ struct ContentView: View {
                 }
             }
 
-            Text("Select an item")
+            if selectedTab == 0 {
+                SelectNoteView()
+            } else {
+                Text("Select an item")
+            }
         }
         .navigationTitle(getTitle())
         .navigationViewStyle(DoubleColumnNavigationViewStyle())

@@ -39,7 +39,6 @@ struct ReminderListView: View {
         #if os(iOS)
         return .primaryAction
         #endif
-
         return .navigation
     }
 }

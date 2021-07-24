@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import SwiftUIX
 
 struct NoteView: View {
     @EnvironmentObject var storage: NoteItemStorage
@@ -16,6 +17,7 @@ struct NoteView: View {
     @State var title: String = ""
     @State var content: String = ""
 
+    @State var showAddNote = false
     @State var showDeleteAlert = false
 
     var body: some View {
@@ -41,12 +43,27 @@ struct NoteView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .font(.body)
                 .background(Color.red)
+                .onChange(of: content) { _ in
+                    if storage.shouldAutoSave {
+                        storage.detector.send()
+                    }
+                    storage.shouldAutoSave = true
+                }
+                .onReceive(storage.publisher) {
+                    save()
+                }
 
             Spacer()
         }
         .padding(.horizontal)
         .toolbar {
-            ToolbarItem(placement: .destructiveAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button(action: {
+                    showAddNote = true
+                }) {
+                    Image(systemName: "plus")
+                }
+
                 Button(action: {
                     showDeleteAlert = true
                 }) {
@@ -59,11 +76,26 @@ struct NoteView: View {
                 delete()
             }))
         })
+        .sheet(isPresented: $showAddNote, content: {
+            DialogTextField(title: "New Note", textFieldTitle: "Title") { result in
+                guard result != "" else {
+                    return
+                }
+
+                withAnimation {
+                    storage.add(title: result, content: "")
+                }
+            }
+        })
         .onChange(of: item.lastEdited, perform: { _ in
+            storage.shouldAutoSave = false
+
             self.title = item.getTitle()
             self.content = item.getContent()
         })
         .onAppear {
+            storage.shouldAutoSave = true
+
             self.title = item.getTitle()
             self.content = item.getContent()
         }
@@ -74,6 +106,7 @@ struct NoteView: View {
 
     func save() {
         if content != item.getContent() {
+            print("Saving note")
             storage.edit(item: item, title: title, content: content)
         }
     }

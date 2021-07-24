@@ -45,6 +45,7 @@ struct RemindersView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(8)
+                        .foregroundColor(.gray)
 
                         Spacer()
                     }

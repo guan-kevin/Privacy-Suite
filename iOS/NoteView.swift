@@ -33,6 +33,15 @@ struct NoteView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .font(.body)
                 .background(Color.red)
+                .onChange(of: content) { _ in
+                    if storage.shouldAutoSave {
+                        storage.detector.send()
+                    }
+                    storage.shouldAutoSave = true
+                }
+                .onReceive(storage.publisher) {
+                    save()
+                }
 
             Spacer()
         }
@@ -58,10 +67,14 @@ struct NoteView: View {
             }))
         })
         .onChange(of: item.lastEdited, perform: { _ in
+            storage.shouldAutoSave = false
+            
             self.title = item.getTitle()
             self.content = item.getContent()
         })
         .onAppear {
+            storage.shouldAutoSave = true
+            
             self.title = item.getTitle()
             self.content = item.getContent()
         }

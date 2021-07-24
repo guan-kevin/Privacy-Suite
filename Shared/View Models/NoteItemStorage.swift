@@ -5,6 +5,7 @@
 //  Created by Kevin Guan on 7/20/21.
 //
 
+import Combine
 import CoreData
 import Foundation
 import RNCryptor
@@ -14,6 +15,10 @@ class NoteItemStorage: NSObject, ObservableObject {
     @Published var notes: [NoteItem] = []
     @Published var selection: ObjectIdentifier?
     var defaultSelection = ObjectIdentifier(Dummy())
+    var shouldAutoSave = false
+
+    let detector = PassthroughSubject<Void, Never>()
+    let publisher: AnyPublisher<Void, Never>
 
     private let controller: NSFetchedResultsController<NoteItem>
 
@@ -22,9 +27,11 @@ class NoteItemStorage: NSObject, ObservableObject {
         controller = NSFetchedResultsController(fetchRequest: NoteItem.getFetchRequest,
                                                 managedObjectContext: managedObjectContext,
                                                 sectionNameKeyPath: nil, cacheName: nil)
+        publisher = detector
+            .debounce(for: .seconds(3), scheduler: DispatchQueue.main)
+            .eraseToAnyPublisher()
 
         super.init()
-
         controller.delegate = self
     }
 
