@@ -19,10 +19,25 @@ public extension ReminderListItem {
 
     var reminderArray: [ReminderItem] {
         let set = reminders as? Set<ReminderItem> ?? []
-
         return set.sorted {
-            $0.priority < $1.priority
+            // both (not) completed
+            if $0.isCompleted == $1.isCompleted {
+                if $0.priority != $1.priority {
+                    // priority first
+                    return $0.priority > $1.priority
+                } else {
+                    // date created next
+                    return $0.dateCreated ?? Date() > $1.dateCreated ?? Date()
+                }
+            } else {
+                // not completed one first
+                return !$0.isCompleted
+            }
         }
+    }
+
+    var todoReminderArray: [ReminderItem] {
+        reminderArray.filter { !$0.isCompleted }
     }
 
     var listName: String {

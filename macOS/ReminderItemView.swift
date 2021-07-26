@@ -19,9 +19,7 @@ struct ReminderItemView: View {
     @State var completed: Bool = false
 
     @State var date: Date?
-
     @State var priority: Int16 = 0
-    @State var setPriority = false
 
     @State var showSettings = false
     @State var showInfo = false
@@ -33,57 +31,23 @@ struct ReminderItemView: View {
                     showInfo = hovering
                 })
                 .onReceive(storage.publisher, perform: { _ in
-                    print("Saving...")
+                    update()
+                })
+                .onChange(of: date, perform: { _ in
+                    storage.detector.send()
+                })
+                .onChange(of: priority, perform: { _ in
+                    storage.detector.send()
                 })
         }
         .onAppear {
             title = item.getTitle()
             note = item.getNotes()
             completed = item.isCompleted
-
-            item.date = date
-
+            date = item.date
             priority = item.priority
         }
     }
-
-    /*
-     var unfocused: some View {
-         HStack {
-             completedButton
-
-             VStack(alignment: .leading, spacing: 0) {
-                 Spacer()
-
-                 HStack {
-                     Text(title)
-                         .lineLimit(1)
-
-                     Spacer()
-
-                     if showInfo || showSettings {
-                         infoButton
-                     }
-                 }
-
-                 if let displayDate = item.date, setDate {
-                     Text(displayDate, formatter: itemFormatter)
-                 }
-
-                 Spacer()
-
-                 Divider()
-             }
-         }
-         .contentShape(Rectangle())
-         .onTapGesture {
-             switchFocus()
-         }
-         .onHover(perform: { hovering in
-             showInfo = hovering
-         })
-     }
-     */
 
     var focused: some View {
         HStack {
@@ -97,6 +61,12 @@ struct ReminderItemView: View {
                     TextField("Title", text: $title, onCommit: {
                         storage.detector.send()
                     })
+                        .introspectTextField(customize: { textField in
+                            if storage.focus == item.id {
+                                textField.becomeFirstResponder()
+                                storage.focus = nil
+                            }
+                        })
                         .font(.system(size: 16, weight: .regular, design: .rounded))
 
                     Spacer()
@@ -119,6 +89,7 @@ struct ReminderItemView: View {
     var completedButton: some View {
         Button(action: {
             completed.toggle()
+            storage.detector.send()
         }) {
             if completed {
                 Image(systemName: "largecircle.fill.circle")
@@ -146,7 +117,8 @@ struct ReminderItemView: View {
 
     func update() {
         if title != item.getTitle() || note != item.getNotes() || completed != item.isCompleted || priority != item.priority || date != item.date {
-            storage.editReminder(item: item, title: title, notes: note, date: date, priority: setPriority ? Int16(0) : priority, completed: completed)
+            print("Saving reminder")
+            storage.editReminder(item: item, title: title, notes: note, date: date, priority: priority, completed: completed)
         }
     }
 }

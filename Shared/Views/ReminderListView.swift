@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ReminderListView: View {
+    @EnvironmentObject var storage: ReminderItemStorage
     @State var item: ReminderListItem
+    @State var showCompleted = false
 
     var body: some View {
         #if os(iOS)
@@ -24,36 +26,35 @@ struct ReminderListView: View {
             if item.reminderArray.count == 0 {
                 Text("No reminder in this list")
             } else {
-                List {
-                    ForEach(item.reminderArray) { reminder in
-                        ReminderItemView(item: reminder)
+                if showCompleted {
+                    List {
+                        ForEach(item.reminderArray) { reminder in
+                            ReminderItemView(item: reminder)
+                        }
+                    }
+                } else {
+                    List {
+                        ForEach(item.todoReminderArray) { reminder in
+                            ReminderItemView(item: reminder)
+                        }
                     }
                 }
             }
-
-            ReminderListToolbarView(item: item)
-                .frame(width: 0, height: 0)
         }
-    }
-}
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button(action: {
+                    showCompleted.toggle()
+                }) {
+                    Image(systemName: showCompleted ? "text.badge.xmark" : "text.badge.checkmark")
+                }
 
-struct ReminderListToolbarView: View {
-    @EnvironmentObject var storage: ReminderItemStorage
-    let item: ReminderListItem
-
-    var body: some View {
-        Text("")
-            .toolbar {
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button(action: {
-                        storage.addReminder(list: item)
-                    }) {
-                        Image(systemName: "plus")
-                    }
+                Button(action: {
+                    storage.addReminder(list: item)
+                }) {
+                    Image(systemName: "plus")
                 }
             }
-            .onAppear {
-                storage.focus = nil
-            }
+        }
     }
 }

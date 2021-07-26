@@ -18,46 +18,31 @@ struct ReminderItemView: View {
 
     @State var completed: Bool = false
 
-    @State var date = Date()
-    @State var setDate = false
+    @State var date: Date?
 
-    @State var priority: Int16 = 1
-    @State var setPriority = false
-    
+    @State var priority: Int16 = 0
+
+    @State var showSettings = false
 
     var body: some View {
         Group {
-            if storage.focus == item.id {
-                focused
-            } else {
-                unfocused
-            }
+            focused
+                .onReceive(storage.publisher, perform: { _ in
+                    update()
+                })
+                .onChange(of: date, perform: { _ in
+                    storage.detector.send()
+                })
+                .onChange(of: priority, perform: { _ in
+                    storage.detector.send()
+                })
         }
         .onAppear {
             title = item.getTitle()
-        }
-    }
-
-    var unfocused: some View {
-        HStack {
-            completedButton
-
-            VStack(alignment: .leading, spacing: 5) {
-                Spacer()
-
-                Text(title)
-                    .lineLimit(1)
-
-                if let displayDate = item.date, setDate {
-                    Text(displayDate, formatter: itemFormatter)
-                }
-
-                Spacer()
-            }
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            switchFocus()
+            note = item.getNotes()
+            completed = item.isCompleted
+            date = item.date
+            priority = item.priority
         }
     }
 
@@ -68,108 +53,33 @@ struct ReminderItemView: View {
                 Spacer()
             }
 
-            VStack(alignment: .leading, spacing: 5) {
-                TextField("Title", text: $title)
-                    .introspectTextField { textField in
-                        textField.becomeFirstResponder()
-                    }
+            VStack(alignment: .leading, spacing: 3) {
+                HStack {
+                    TextField("Title", text: $title, onCommit: {
+                        storage.detector.send()
+                    })
+                        .introspectTextField(customize: { textField in
+                            if storage.focus == item.id {
+                                textField.becomeFirstResponder()
+                                storage.focus = nil
+                            }
+                        })
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
 
-                TextField("Note", text: $note)
+                    Spacer()
+
+                    infoButton
+                }
+
+                TextField("Note", text: $note, onCommit: {
+                    storage.detector.send()
+                })
                     .foregroundColor(.gray)
                     .font(.callout)
 
-                if !setDate && !setPriority {
-                    HStack(alignment: .center) {
-                        dateBar
-
-                        priorityBar
-                    }
-                } else {
-                    VStack(alignment: .leading) {
-                        dateBar
-
-                        priorityBar
-                    }
+                if showSettings {
+                    ReminderSettingsView(date: $date, priority: $priority)
                 }
-            }
-        }
-    }
-
-    var dateBar: some View {
-        HStack(spacing: 0) {
-            if setDate {
-                Button(action: {
-                    setDate = false
-                }) {
-                    Image(systemName: "xmark")
-                        .padding(5)
-                        .contentShape(Rectangle())
-                        .foregroundColor(.gray)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .cornerRadius(5)
-                .padding(.trailing, 12)
-
-                DatePicker(
-                    "",
-                    selection: $date,
-                    displayedComponents: [.date, .hourAndMinute]
-                )
-                .frame(width: 180)
-            } else {
-                Button(action: {
-                    setDate = true
-                }) {
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("Add Date")
-                    }
-                    .padding(5)
-                    .contentShape(Rectangle())
-                    .foregroundColor(.gray)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .background(Color(.displayP3, red: 0.1725, green: 0.1725, blue: 0.1725, opacity: 1))
-                .cornerRadius(5)
-            }
-        }
-    }
-
-    var priorityBar: some View {
-        HStack(spacing: 0) {
-            if setPriority {
-                Button(action: {
-                    priority = Int16(0)
-                    setPriority = false
-                }) {
-                    Image(systemName: "xmark")
-                        .padding(5)
-                        .contentShape(Rectangle())
-                        .foregroundColor(.gray)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .cornerRadius(5)
-
-                Picker("Priority", selection: $priority) {
-                    Text("Low").tag(Int16(1))
-                    Text("Medium").tag(Int16(2))
-                    Text("High").tag(Int16(3))
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .frame(width: 280)
-            } else {
-                Button(action: {
-                    priority = Int16(1)
-                    setPriority = true
-                }) {
-                    Image(systemName: "flag")
-                        .padding(5)
-                        .contentShape(Rectangle())
-                        .foregroundColor(.gray)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .background(Color(.displayP3, red: 0.1725, green: 0.1725, blue: 0.1725, opacity: 1))
-                .cornerRadius(5)
             }
         }
     }
@@ -189,21 +99,123 @@ struct ReminderItemView: View {
         .buttonStyle(PlainButtonStyle())
     }
 
-    func switchFocus() {
-        note = item.getNotes()
-        completed = item.isCompleted
-
-        if item.date != nil {
-            date = item.date!
-            setDate = true
+    var infoButton: some View {
+        Button(action: {
+            showSettings.toggle()
+        }) {
+            Image(systemName: "info.circle")
+                .font(.system(size: 20))
         }
+        .buttonStyle(PlainButtonStyle())
+    }
 
-        if item.priority > 0 {
-            priority = item.priority
-            setPriority = true
+    func update() {
+        if title != item.getTitle() || note != item.getNotes() || completed != item.isCompleted || priority != item.priority || date != item.date {
+            storage.editReminder(item: item, title: title, notes: note, date: date, priority: setPriority ? Int16(0) : priority, completed: completed)
         }
+    }
+}
 
-        storage.focus = item.id
+struct ReminderSettingsView: View {
+    @Binding var date: Date?
+    @Binding var priority: Int16
+
+    var body: some View {
+        Group {
+            if date == nil && priority == 0 {
+                HStack(alignment: .center) {
+                    dateBar
+
+                    priorityBar
+                }
+            } else {
+                VStack(alignment: .leading) {
+                    dateBar
+
+                    priorityBar
+                }
+            }
+        }
+    }
+
+    var dateBar: some View {
+        HStack(spacing: 0) {
+            if date != nil {
+                Button(action: {
+                    date = nil
+                }) {
+                    Image(systemName: "xmark")
+                        .padding(5)
+                        .contentShape(Rectangle())
+                        .foregroundColor(.gray)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .cornerRadius(5)
+
+                DatePicker(
+                    "",
+                    selection: Binding(get: {
+                        date ?? Date()
+                    }, set: { new in
+                        date = new
+                    }),
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+                .frame(width: 200)
+            } else {
+                Button(action: {
+                    date = Date()
+                }) {
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text("Add Date")
+                    }
+                    .padding(5)
+                    .contentShape(Rectangle())
+                    .foregroundColor(.gray)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .background(Color(.displayP3, red: 0.1725, green: 0.1725, blue: 0.1725, opacity: 1))
+                .cornerRadius(5)
+            }
+        }
+    }
+
+    var priorityBar: some View {
+        HStack(spacing: 0) {
+            if priority > 0 {
+                Button(action: {
+                    priority = Int16(0)
+                }) {
+                    Image(systemName: "xmark")
+                        .padding(5)
+                        .contentShape(Rectangle())
+                        .foregroundColor(.gray)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .cornerRadius(5)
+
+                Picker("Priority", selection: $priority) {
+                    Text("Low").tag(Int16(1))
+                    Text("Medium").tag(Int16(2))
+                    Text("High").tag(Int16(3))
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(width: 250)
+            } else {
+                Button(action: {
+                    priority = Int16(1)
+                }) {
+                    Image(systemName: "flag")
+                        .padding(5)
+                        .contentShape(Rectangle())
+                        .foregroundColor(.gray)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .background(Color(.displayP3, red: 0.1725, green: 0.1725, blue: 0.1725, opacity: 1))
+                .cornerRadius(5)
+            }
+        }
     }
 }
 

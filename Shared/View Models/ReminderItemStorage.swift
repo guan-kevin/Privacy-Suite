@@ -15,10 +15,9 @@ class ReminderItemStorage: NSObject, ObservableObject {
     @Published var selection: ObjectIdentifier?
     var defaultSelection = ObjectIdentifier(Dummy())
 
-    @Published var focus: ObjectIdentifier?
-
     private let controller: NSFetchedResultsController<ReminderListItem>
 
+    var focus: ObjectIdentifier?
     let detector = PassthroughSubject<Void, Never>()
     let publisher: AnyPublisher<Void, Never>
 
@@ -129,19 +128,24 @@ class ReminderItemStorage: NSObject, ObservableObject {
     }
 
     func addReminder(list: ReminderListItem) {
-        PersistenceController.shared.container.viewContext.perform {
-            let reminder = ReminderItem(context: PersistenceController.shared.container.viewContext)
-            reminder.title = ""
-            reminder.notes = ""
-            reminder.dateCreated = Date()
-            reminder.date = nil
-            reminder.priority = 0
-            reminder.completed = NSNumber(booleanLiteral: false)
-            list.addToReminders(reminder)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let password = ValetController.getPassword()
+            let emptyString = EncryptionHelper.encryptString(input: "", withPassword: password.0)
 
-            self.focus = reminder.id
+            PersistenceController.shared.container.viewContext.perform {
+                let reminder = ReminderItem(context: PersistenceController.shared.container.viewContext)
+                reminder.title = emptyString
+                reminder.notes = emptyString
+                reminder.dateCreated = Date()
+                reminder.date = nil
+                reminder.priority = 0
+                reminder.completed = NSNumber(booleanLiteral: false)
+                list.addToReminders(reminder)
 
-            PersistenceController.shared.save()
+                self.focus = reminder.id
+
+                PersistenceController.shared.save()
+            }
         }
     }
 }

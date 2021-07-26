@@ -48,6 +48,6 @@ extension ReminderItem: Identifiable {
             decryptedNotes = EncryptionHelper.decryptString(encrypted: notes, withPassword: ValetController.getPassword().0)
         }
 
-        return encryptedNotes ?? "Untitled"
+        return decryptedNotes ?? "Untitled"
     }
 }
