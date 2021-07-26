@@ -8,37 +8,52 @@
 import SwiftUI
 
 struct ReminderListView: View {
-    @EnvironmentObject var storage: ReminderItemStorage
-
     @State var item: ReminderListItem
 
     var body: some View {
+        #if os(iOS)
+        content
+            .navigationBarTitleDisplayMode(.inline)
+        #elseif os(macOS)
+        content
+        #endif
+    }
+
+    var content: some View {
         Group {
             if item.reminderArray.count == 0 {
                 Text("No reminder in this list")
             } else {
                 List {
                     ForEach(item.reminderArray) { reminder in
-                        Text(reminder.getTitle())
+                        ReminderItemView(item: reminder)
                     }
                 }
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: getToolbarItemPlacement()) {
-                Button(action: {
-//                    showAddList.toggle()
-                }) {
-                    Image(systemName: "plus")
-                }
-            }
+
+            ReminderListToolbarView(item: item)
+                .frame(width: 0, height: 0)
         }
     }
+}
 
-    func getToolbarItemPlacement() -> ToolbarItemPlacement {
-        #if os(iOS)
-        return .primaryAction
-        #endif
-        return .navigation
+struct ReminderListToolbarView: View {
+    @EnvironmentObject var storage: ReminderItemStorage
+    let item: ReminderListItem
+
+    var body: some View {
+        Text("")
+            .toolbar {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button(action: {
+                        storage.addReminder(list: item)
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .onAppear {
+                storage.focus = nil
+            }
     }
 }

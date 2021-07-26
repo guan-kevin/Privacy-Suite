@@ -14,11 +14,21 @@ public extension ReminderItem {
         return NSFetchRequest<ReminderItem>(entityName: "ReminderItem")
     }
 
-    @NSManaged var date: Date?
-    @NSManaged var dateCreated: Date?
-    @NSManaged var notes: String?
-    @NSManaged var priority: Int16
     @NSManaged var title: String?
+    @NSManaged var notes: String?
+    @NSManaged var dateCreated: Date?
+    @NSManaged var date: Date?
+    @NSManaged var priority: Int16
+    @NSManaged var completed: NSNumber
+    var isCompleted: Bool {
+        get {
+            return Bool(truncating: completed)
+        }
+        set {
+            completed = NSNumber(value: newValue)
+        }
+    }
+
     @NSManaged var list: ReminderListItem?
 }
 

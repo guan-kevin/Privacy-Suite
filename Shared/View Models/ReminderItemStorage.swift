@@ -5,15 +5,22 @@
 //  Created by Kevin Guan on 7/22/21.
 //
 
+import Combine
 import CoreData
 import Foundation
 
 class ReminderItemStorage: NSObject, ObservableObject {
     @Published var list: [ReminderListItem] = []
+
     @Published var selection: ObjectIdentifier?
     var defaultSelection = ObjectIdentifier(Dummy())
 
+    @Published var focus: ObjectIdentifier?
+
     private let controller: NSFetchedResultsController<ReminderListItem>
+
+    let detector = PassthroughSubject<Void, Never>()
+    let publisher: AnyPublisher<Void, Never>
 
     init(managedObjectContext: NSManagedObjectContext) {
         print("Storage INITING")
@@ -21,8 +28,11 @@ class ReminderItemStorage: NSObject, ObservableObject {
                                                 managedObjectContext: managedObjectContext,
                                                 sectionNameKeyPath: nil, cacheName: nil)
 
-        super.init()
+        publisher = detector
+            .debounce(for: .seconds(3), scheduler: DispatchQueue.main)
+            .eraseToAnyPublisher()
 
+        super.init()
         controller.delegate = self
 
 //        PersistenceController.shared.container.viewContext.perform {
@@ -94,6 +104,44 @@ class ReminderItemStorage: NSObject, ObservableObject {
                 }
                 break
             }
+        }
+    }
+
+    func editReminder(item: ReminderItem, title: String, notes: String, date: Date?, priority: Int16, completed: Bool) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let password = ValetController.getPassword()
+            let newTitle = EncryptionHelper.encryptString(input: title, withPassword: password.0)
+            let newNotes = EncryptionHelper.encryptString(input: notes, withPassword: password.0)
+
+            PersistenceController.shared.container.viewContext.perform {
+                if let newTitle = newTitle, let newNotes = newNotes {
+                    item.title = newTitle
+                    item.notes = newNotes
+                    item.date = date
+                    item.priority = priority
+                    item.completed = NSNumber(booleanLiteral: completed)
+                    PersistenceController.shared.save()
+                } else {
+                    print("Encrypt failed!!!")
+                }
+            }
+        }
+    }
+
+    func addReminder(list: ReminderListItem) {
+        PersistenceController.shared.container.viewContext.perform {
+            let reminder = ReminderItem(context: PersistenceController.shared.container.viewContext)
+            reminder.title = ""
+            reminder.notes = ""
+            reminder.dateCreated = Date()
+            reminder.date = nil
+            reminder.priority = 0
+            reminder.completed = NSNumber(booleanLiteral: false)
+            list.addToReminders(reminder)
+
+            self.focus = reminder.id
+
+            PersistenceController.shared.save()
         }
     }
 }

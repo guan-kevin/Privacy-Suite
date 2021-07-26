@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,6 +59,10 @@
 		0AD4234326AA4A6700D9C91A /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4234226AA4A6700D9C91A /* ReminderListView.swift */; };
 		0AD4234426AA4A6700D9C91A /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4234226AA4A6700D9C91A /* ReminderListView.swift */; };
 		0AD4234626AA4BEE00D9C91A /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4231226AA1E1D00D9C91A /* RemindersView.swift */; };
+		0AD4235126AC986E00D9C91A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 0AD4235026AC986E00D9C91A /* Introspect */; };
+		0AD4235326AC987600D9C91A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 0AD4235226AC987600D9C91A /* Introspect */; };
+		0AD4235526AE0F1700D9C91A /* ReminderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4235426AE0F1700D9C91A /* ReminderItemView.swift */; };
+		0AD4235826AE3DAA00D9C91A /* ReminderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4234C26AC923000D9C91A /* ReminderItemView.swift */; };
 		71BCA2C6F510C1D98F92E2C2 /* Pods_Privacy_Suite__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */; };
 		79CDA625FE9F939752A77EA0 /* Pods_Privacy_Suite__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BCBE6766D332C36D3B7F9A /* Pods_Privacy_Suite__iOS_.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +108,8 @@
 		0AD4233C26AA263900D9C91A /* ReminderItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItemStorage.swift; sourceTree = "<group>"; };
 		0AD4233F26AA41D800D9C91A /* DialogTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTextField.swift; sourceTree = "<group>"; };
 		0AD4234226AA4A6700D9C91A /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
+		0AD4234C26AC923000D9C91A /* ReminderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItemView.swift; sourceTree = "<group>"; };
+		0AD4235426AE0F1700D9C91A /* ReminderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItemView.swift; sourceTree = "<group>"; };
 		0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Privacy_Suite__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		677B1E7FC34C2D956553E3CD /* Pods-Privacy Suite (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (iOS).release.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		879CAAC4A6E160C73AD77834 /* Pods-Privacy Suite (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (iOS)/Pods-Privacy Suite (iOS).debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A32694A26A5298400D99744 /* CloudKit.framework in Frameworks */,
+				0AD4235126AC986E00D9C91A /* Introspect in Frameworks */,
 				79CDA625FE9F939752A77EA0 /* Pods_Privacy_Suite__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A32694C26A529F000D99744 /* CloudKit.framework in Frameworks */,
+				0AD4235326AC987600D9C91A /* Introspect in Frameworks */,
 				71BCA2C6F510C1D98F92E2C2 /* Pods_Privacy_Suite__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +188,7 @@
 				0A9EFB6E26A92B82003A72BF /* NotesView.swift */,
 				0A9EFB6826A9292B003A72BF /* NoteView.swift */,
 				0AD4231226AA1E1D00D9C91A /* RemindersView.swift */,
+				0AD4235426AE0F1700D9C91A /* ReminderItemView.swift */,
 				0AD4231B26AA1E8A00D9C91A /* CalendarView.swift */,
 				0A32692C26A5293300D99744 /* Info.plist */,
 			);
@@ -194,6 +203,7 @@
 				0A32694D26A53E1E00D99744 /* NotesView.swift */,
 				0A32695326A5422000D99744 /* NoteView.swift */,
 				0AD4231426AA1E2700D9C91A /* RemindersView.swift */,
+				0AD4234C26AC923000D9C91A /* ReminderItemView.swift */,
 				0AD4231826AA1E7B00D9C91A /* CalendarView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
@@ -283,6 +293,7 @@
 			);
 			name = "Privacy Suite (iOS)";
 			packageProductDependencies = (
+				0AD4235026AC986E00D9C91A /* Introspect */,
 			);
 			productName = "Privacy Suite (iOS)";
 			productReference = 0A32692926A5293300D99744 /* Privacy Suite.app */;
@@ -304,6 +315,7 @@
 			);
 			name = "Privacy Suite (macOS)";
 			packageProductDependencies = (
+				0AD4235226AC987600D9C91A /* Introspect */,
 			);
 			productName = "Privacy Suite (macOS)";
 			productReference = 0A32693126A5293300D99744 /* Privacy Suite.app */;
@@ -336,6 +348,7 @@
 			);
 			mainGroup = 0A32691926A5292F00D99744;
 			packageReferences = (
+				0AD4234F26AC986E00D9C91A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 0A32692A26A5293300D99744 /* Products */;
 			projectDirPath = "";
@@ -464,6 +477,7 @@
 				0AD4234026AA41D800D9C91A /* DialogTextField.swift in Sources */,
 				0AD4231E26AA1E9F00D9C91A /* CalendarView.swift in Sources */,
 				0AD4233A26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */,
+				0AD4235526AE0F1700D9C91A /* ReminderItemView.swift in Sources */,
 				0A32693B26A5293300D99744 /* Persistence.swift in Sources */,
 				0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
 				0A9EFB6C26A929D9003A72BF /* LockedView.swift in Sources */,
@@ -494,6 +508,7 @@
 				0AD4234126AA41D800D9C91A /* DialogTextField.swift in Sources */,
 				0AD4231626AA1E6300D9C91A /* RemindersView.swift in Sources */,
 				0AD4233B26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */,
+				0AD4235826AE3DAA00D9C91A /* ReminderItemView.swift in Sources */,
 				0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
 				0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
 				0A32695226A53F4A00D99744 /* ContentView.swift in Sources */,
@@ -710,6 +725,7 @@
 				DEVELOPMENT_TEAM = RB73R3H3RF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -719,6 +735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinguan.Privacy-Suite";
 				PRODUCT_NAME = "Privacy Suite";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -754,6 +771,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0AD4234F26AC986E00D9C91A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0AD4235026AC986E00D9C91A /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AD4234F26AC986E00D9C91A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		0AD4235226AC987600D9C91A /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AD4234F26AC986E00D9C91A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */ = {

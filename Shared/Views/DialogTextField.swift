@@ -5,6 +5,7 @@
 //  Created by Kevin Guan on 7/22/21.
 //
 
+import Introspect
 import SwiftUI
 
 struct DialogTextField: View {
@@ -23,6 +24,9 @@ struct DialogTextField: View {
             TextField(textFieldTitle, text: $textField)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 300, height: 50)
+                .introspectTextField { textField in
+                    textField.becomeFirstResponder()
+                }
 
             VStack {
                 Button(action: {

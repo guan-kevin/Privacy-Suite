@@ -8,8 +8,6 @@
 import Combine
 import CoreData
 import Foundation
-import RNCryptor
-import SwiftUI
 
 class NoteItemStorage: NSObject, ObservableObject {
     @Published var notes: [NoteItem] = []

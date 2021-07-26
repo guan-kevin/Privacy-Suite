@@ -13,6 +13,7 @@
         <attribute name="title" optional="YES" attributeType="String" valueTransformerName="EncryptedDataTransformer" defaultValueString="Untitled"/>
     </entity>
     <entity name="ReminderItem" representedClassName="ReminderItem" syncable="YES">
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="631180800" usesScalarValueType="NO"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
@@ -28,7 +29,7 @@
         <element name="ConfigItem" positionX="-26.29931640625" positionY="18" width="128" height="44"/>
         <element name="Item" positionX="-1.7559814453125" positionY="-91.00421142578125" width="128" height="44"/>
         <element name="NoteItem" positionX="198.0943603515625" positionY="-9.24005126953125" width="128" height="103"/>
-        <element name="ReminderItem" positionX="-31.0703125" positionY="216.2249145507812" width="128" height="119"/>
+        <element name="ReminderItem" positionX="-31.0703125" positionY="216.2249145507812" width="128" height="134"/>
         <element name="ReminderListItem" positionX="-272.5921630859375" positionY="276.4385375976562" width="128" height="73"/>
     </elements>
 </model>
