@@ -87,6 +87,7 @@ struct ReminderItemView: View {
     var completedButton: some View {
         Button(action: {
             completed.toggle()
+            storage.detector.send()
         }) {
             if completed {
                 Image(systemName: "largecircle.fill.circle")
@@ -111,7 +112,7 @@ struct ReminderItemView: View {
 
     func update() {
         if title != item.getTitle() || note != item.getNotes() || completed != item.isCompleted || priority != item.priority || date != item.date {
-            storage.editReminder(item: item, title: title, notes: note, date: date, priority: setPriority ? Int16(0) : priority, completed: completed)
+            storage.editReminder(item: item, title: title, notes: note, date: date, priority: priority, completed: completed)
         }
     }
 }
@@ -151,6 +152,7 @@ struct ReminderSettingsView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .cornerRadius(5)
+                .padding(.trailing, 5)
 
                 DatePicker(
                     "",

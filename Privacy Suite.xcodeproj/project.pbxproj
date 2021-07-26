@@ -52,7 +52,6 @@
 		0AD4233926AA24E700D9C91A /* ReminderItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233226AA24E700D9C91A /* ReminderItem+CoreDataClass.swift */; };
 		0AD4233A26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233326AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift */; };
 		0AD4233B26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233326AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift */; };
-		0AD4233D26AA263900D9C91A /* ReminderItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233C26AA263900D9C91A /* ReminderItemStorage.swift */; };
 		0AD4233E26AA263900D9C91A /* ReminderItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233C26AA263900D9C91A /* ReminderItemStorage.swift */; };
 		0AD4234026AA41D800D9C91A /* DialogTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233F26AA41D800D9C91A /* DialogTextField.swift */; };
 		0AD4234126AA41D800D9C91A /* DialogTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233F26AA41D800D9C91A /* DialogTextField.swift */; };
@@ -63,6 +62,7 @@
 		0AD4235326AC987600D9C91A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 0AD4235226AC987600D9C91A /* Introspect */; };
 		0AD4235826AE3DAA00D9C91A /* ReminderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4234C26AC923000D9C91A /* ReminderItemView.swift */; };
 		0AD4235D26AE60C300D9C91A /* ReminderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4235426AE0F1700D9C91A /* ReminderItemView.swift */; };
+		0AD4235E26AE84F000D9C91A /* ReminderItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4233C26AA263900D9C91A /* ReminderItemStorage.swift */; };
 		71BCA2C6F510C1D98F92E2C2 /* Pods_Privacy_Suite__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4D0D5BD3EDCF1CD8DE4344 /* Pods_Privacy_Suite__macOS_.framework */; };
 		79CDA625FE9F939752A77EA0 /* Pods_Privacy_Suite__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BCBE6766D332C36D3B7F9A /* Pods_Privacy_Suite__iOS_.framework */; };
 /* End PBXBuildFile section */
@@ -468,7 +468,7 @@
 				0A32693526A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
 				0A9EFB6126A9018C003A72BF /* ValetController.swift in Sources */,
 				0AD4234626AA4BEE00D9C91A /* RemindersView.swift in Sources */,
-				0AD4233D26AA263900D9C91A /* ReminderItemStorage.swift in Sources */,
+				0AD4235E26AE84F000D9C91A /* ReminderItemStorage.swift in Sources */,
 				0AD4233426AA24E700D9C91A /* ReminderListItem+CoreDataClass.swift in Sources */,
 				0AD4233626AA24E700D9C91A /* ReminderListItem+CoreDataProperties.swift in Sources */,
 				0AD4233826AA24E700D9C91A /* ReminderItem+CoreDataClass.swift in Sources */,

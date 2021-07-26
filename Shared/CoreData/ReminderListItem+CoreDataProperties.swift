@@ -27,7 +27,7 @@ public extension ReminderListItem {
                     return $0.priority > $1.priority
                 } else {
                     // date created next
-                    return $0.dateCreated ?? Date() > $1.dateCreated ?? Date()
+                    return $0.dateCreated ?? Date() < $1.dateCreated ?? Date()
                 }
             } else {
                 // not completed one first

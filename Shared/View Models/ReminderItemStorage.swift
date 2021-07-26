@@ -33,36 +33,13 @@ class ReminderItemStorage: NSObject, ObservableObject {
 
         super.init()
         controller.delegate = self
-
-//        PersistenceController.shared.container.viewContext.perform {
-//            let list = ReminderListItem(context: PersistenceController.shared.container.viewContext)
-//            list.name = "My First List"
-//
-//            let reminder = ReminderItem(context: PersistenceController.shared.container.viewContext)
-//            reminder.title = "Title"
-//            reminder.notes = "Notes Here"
-//            reminder.dateCreated = Date()
-//            reminder.date = Date()
-//            reminder.priority = 0
-//            reminder.list = list
-//
-//            PersistenceController.shared.save()
-//        }
     }
 
     func fetchList() {
-        print("Fetching reminder list")
+        print("fetchList")
         do {
             try controller.performFetch()
             list = controller.fetchedObjects ?? []
-
-//            for i in list {
-//                for j in i.reminders ?? [] {
-//                    print((j as? ReminderItem)?.title)
-//                }
-//            }
-//
-//            PersistenceController.shared.save()
 
             DispatchQueue.global(qos: .background).async { [weak self] in
                 guard let self = self else { return }

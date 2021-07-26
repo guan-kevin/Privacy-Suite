@@ -42,7 +42,7 @@ struct ReminderListView: View {
             }
         }
         .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
+            ToolbarItemGroup(placement: getToolbarItemPlacement()) {
                 Button(action: {
                     showCompleted.toggle()
                 }) {
@@ -56,5 +56,13 @@ struct ReminderListView: View {
                 }
             }
         }
+    }
+
+    func getToolbarItemPlacement() -> ToolbarItemPlacement {
+        #if os(iOS)
+        return .navigationBarTrailing
+        #elseif os(macOS)
+        return .primaryAction
+        #endif
     }
 }

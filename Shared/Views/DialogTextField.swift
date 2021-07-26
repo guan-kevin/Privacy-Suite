@@ -74,6 +74,9 @@ struct DialogTextField: View {
             TextField(textFieldTitle, text: $textField) { _ in } onCommit: {
                 finished()
             }
+            .introspectTextField { textField in
+                textField.becomeFirstResponder()
+            }
             
             HStack {
                 Button(action: {
