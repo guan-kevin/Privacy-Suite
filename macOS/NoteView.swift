@@ -12,7 +12,7 @@ import SwiftUIX
 struct NoteView: View {
     @EnvironmentObject var storage: NoteItemStorage
 
-    @State var item: NoteItem
+    @ObservedObject var item: NoteItem
 
     @State var title: String = ""
     @State var content: String = ""

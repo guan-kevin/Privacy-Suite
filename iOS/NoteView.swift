@@ -11,7 +11,7 @@ struct NoteView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var storage: NoteItemStorage
 
-    @State var item: NoteItem
+    @ObservedObject var item: NoteItem
 
     @State var title: String = ""
     @State var content: String = ""

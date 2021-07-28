@@ -12,6 +12,10 @@ struct ReminderListView: View {
     @State var item: ReminderListItem
     @State var showCompleted = false
 
+    init(item: ReminderListItem) {
+        _item = State(initialValue: item)
+    }
+
     var body: some View {
         #if os(iOS)
         content
@@ -22,40 +26,22 @@ struct ReminderListView: View {
     }
 
     var content: some View {
-        Group {
-            if item.reminderArray.count == 0 {
-                Text("No reminder in this list")
-            } else {
-                if showCompleted {
-                    List {
-                        ForEach(item.reminderArray) { reminder in
-                            ReminderItemView(item: reminder)
-                        }
+        ReminderFilteredListView(showCompleted: showCompleted, item: item)
+            .toolbar {
+                ToolbarItemGroup(placement: getToolbarItemPlacement()) {
+                    Button(action: {
+                        showCompleted.toggle()
+                    }) {
+                        Image(systemName: showCompleted ? "text.badge.xmark" : "text.badge.checkmark")
                     }
-                } else {
-                    List {
-                        ForEach(item.todoReminderArray) { reminder in
-                            ReminderItemView(item: reminder)
-                        }
-                    }
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: getToolbarItemPlacement()) {
-                Button(action: {
-                    showCompleted.toggle()
-                }) {
-                    Image(systemName: showCompleted ? "text.badge.xmark" : "text.badge.checkmark")
-                }
 
-                Button(action: {
-                    storage.addReminder(list: item)
-                }) {
-                    Image(systemName: "plus")
+                    Button(action: {
+                        storage.addReminder(list: item)
+                    }) {
+                        Image(systemName: "plus")
+                    }
                 }
             }
-        }
     }
 
     func getToolbarItemPlacement() -> ToolbarItemPlacement {
@@ -64,5 +50,39 @@ struct ReminderListView: View {
         #elseif os(macOS)
         return .primaryAction
         #endif
+    }
+}
+
+struct ReminderFilteredListView: View {
+    @FetchRequest var reminders: FetchedResults<ReminderItem>
+
+    init(showCompleted: Bool, item: ReminderListItem) {
+        var predicate = NSPredicate(format: "list == %@", item)
+
+        if !showCompleted {
+            predicate = NSPredicate(format: "list == %@ AND completed == %@", item, NSNumber(value: false))
+        }
+
+        _reminders = FetchRequest(
+            entity: ReminderItem.entity(),
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \ReminderItem.completed, ascending: false),
+                NSSortDescriptor(keyPath: \ReminderItem.priority, ascending: false),
+                NSSortDescriptor(keyPath: \ReminderItem.dateCreated, ascending: true)
+            ],
+            predicate: predicate
+        )
+    }
+
+    var body: some View {
+        if reminders.count == 0 {
+            Text("No reminder in this list")
+        } else {
+            List {
+                ForEach(reminders) { reminder in
+                    ReminderItemView(item: reminder)
+                }
+            }
+        }
     }
 }

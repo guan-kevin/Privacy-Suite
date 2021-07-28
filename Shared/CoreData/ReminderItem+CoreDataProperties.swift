@@ -33,6 +33,7 @@ public extension ReminderItem {
 }
 
 extension ReminderItem: Identifiable {
+
     func getTitle() -> String {
         if decryptedTitle == nil || encryptedTitle != title {
             encryptedTitle = title

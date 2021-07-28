@@ -11,7 +11,7 @@ import SwiftUI
 struct ReminderItemView: View {
     @EnvironmentObject var storage: ReminderItemStorage
 
-    @State var item: ReminderItem
+    @ObservedObject var item: ReminderItem
 
     @State var title: String = ""
     @State var note: String = ""
@@ -35,6 +35,15 @@ struct ReminderItemView: View {
                 })
                 .onChange(of: priority, perform: { _ in
                     storage.detector.send()
+                })
+                .onChange(of: item.title, perform: { _ in
+                    self.title = item.getTitle()
+                })
+                .onChange(of: item.notes, perform: { _ in
+                    self.note = item.getNotes()
+                })
+                .onChange(of: item.date, perform: { _ in
+                    self.date = item.date
                 })
         }
         .onAppear {
