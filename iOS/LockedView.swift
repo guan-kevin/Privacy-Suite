@@ -41,6 +41,7 @@ struct LockedView: View {
                 .multilineTextAlignment(.center)
                 .font(.headline)
         }
+        .padding(.horizontal)
     }
 
     var waitingPassword: some View {
@@ -53,7 +54,6 @@ struct LockedView: View {
 
             Text("You need to enter the password to decrypt your data")
                 .multilineTextAlignment(.center)
-                .padding(.horizontal)
                 .font(.headline)
 
             if model.reason == .cancelled {
@@ -99,6 +99,7 @@ struct LockedView: View {
             }
             .buttonStyle(PlainButtonStyle())
         }
+        .padding(.horizontal)
         .alert(isPresented: $incorrectAlert) {
             Alert(
                 title: Text("Incorrect password"),
@@ -118,7 +119,6 @@ struct LockedView: View {
 
             Text("Set a password to encrypt your data")
                 .multilineTextAlignment(.center)
-                .padding(.horizontal)
                 .font(.headline)
 
             SecureField("Password", text: $passwordInput)
@@ -157,6 +157,7 @@ struct LockedView: View {
             }
             .buttonStyle(PlainButtonStyle())
         }
+        .padding(.horizontal)
         .alert(isPresented: $incorrectAlert) {
             Alert(
                 title: Text("Bad passwords"),

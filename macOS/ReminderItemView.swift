@@ -12,6 +12,7 @@ struct ReminderItemView: View {
     @EnvironmentObject var storage: ReminderItemStorage
 
     @ObservedObject var item: ReminderItem
+    let currentDate: Date
 
     @State var title: String = ""
     @State var note: String = ""
@@ -58,6 +59,8 @@ struct ReminderItemView: View {
         }
     }
 
+    @State var focus = false
+
     var focused: some View {
         HStack {
             VStack {
@@ -67,16 +70,15 @@ struct ReminderItemView: View {
 
             VStack(alignment: .leading, spacing: 3) {
                 HStack {
-                    TextField("Title", text: $title, onCommit: {
+                    FocusableTextField(stringValue: $title, placeholder: "Title", focus: $focus, onCommit: {
                         storage.detector.send()
                     })
-                        .introspectTextField(customize: { textField in
+                        .onAppear {
                             if storage.focus == item.id {
-                                textField.becomeFirstResponder()
+                                focus = true
                                 storage.focus = nil
                             }
-                        })
-                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        }
 
                     Spacer()
 
@@ -84,15 +86,26 @@ struct ReminderItemView: View {
                         infoButton
                     }
                 }
+                .padding(.trailing, 5)
 
                 TextField("Note", text: $note, onCommit: {
                     storage.detector.send()
                 })
                     .foregroundColor(.gray)
                     .font(.callout)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .background(Color.clear)
+                    .padding(.trailing, 5)
+
+                if let date = date, date < currentDate {
+                    Text(date, formatter: itemFormatter)
+                        .foregroundColor(.red)
+                        .padding(.trailing, 5)
+                }
                 Divider()
             }
         }
+        .padding(.leading, 5)
     }
 
     var completedButton: some View {
@@ -233,3 +246,103 @@ private let itemFormatter: DateFormatter = {
     formatter.timeStyle = .short
     return formatter
 }()
+
+// Source: https://serialcoder.dev/text-tutorials/macos-tutorials/macos-programming-implementing-a-focusable-text-field-in-swiftui/
+struct FocusableTextField: NSViewRepresentable {
+    @Binding var stringValue: String
+    var placeholder: String
+    var autoFocus = false
+    var focus: Binding<Bool>
+    var onChange: (() -> Void)?
+    var onCommit: (() -> Void)?
+    var onTabKeystroke: (() -> Void)?
+    @State private var didFocus = false
+
+    func makeNSView(context: Context) -> NSTextField {
+        let textField = NSTextField()
+        textField.stringValue = stringValue
+        textField.placeholderString = placeholder
+        textField.delegate = context.coordinator
+        textField.drawsBackground = false
+        textField.isBezeled = false
+        textField.font = NSFont.systemFont(ofSize: 16)
+        return textField
+    }
+
+    func updateNSView(_ nsView: NSTextField, context: Context) {
+        nsView.stringValue = stringValue
+
+        if autoFocus && !didFocus {
+            NSApplication.shared.mainWindow?.perform(
+                #selector(NSApplication.shared.mainWindow?.makeFirstResponder(_:)),
+                with: nsView,
+                afterDelay: 0.0
+            )
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                didFocus = true
+            }
+        }
+
+        if focus.wrappedValue {
+            NSApplication.shared.mainWindow?.perform(
+                #selector(NSApplication.shared.mainWindow?.makeFirstResponder(_:)),
+                with: nsView,
+                afterDelay: 0.0
+            )
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.focus.wrappedValue = false
+            }
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(with: self)
+    }
+
+    class Coordinator: NSObject, NSTextFieldDelegate {
+        let parent: FocusableTextField
+
+        init(with parent: FocusableTextField) {
+            self.parent = parent
+            super.init()
+
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(handleAppDidBecomeActive(notification:)),
+                                                   name: NSApplication.didBecomeActiveNotification,
+                                                   object: nil)
+        }
+
+        @objc
+        func handleAppDidBecomeActive(notification: Notification) {
+            if parent.autoFocus && !parent.didFocus {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    self.parent.didFocus = false
+                }
+            }
+        }
+
+        // MARK: - NSTextFieldDelegate Methods
+
+        func controlTextDidChange(_ obj: Notification) {
+            guard let textField = obj.object as? NSTextField else { return }
+            parent.stringValue = textField.stringValue
+            parent.onChange?()
+        }
+
+        func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+            parent.stringValue = fieldEditor.string
+            parent.onCommit?()
+            return true
+        }
+
+        func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+            if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) {
+                parent.onTabKeystroke?()
+                return true
+            }
+            return false
+        }
+    }
+}

@@ -12,6 +12,7 @@ struct ReminderItemView: View {
     @EnvironmentObject var storage: ReminderItemStorage
 
     @ObservedObject var item: ReminderItem
+    let currentDate: Date
 
     @State var title: String = ""
     @State var note: String = ""
@@ -85,6 +86,11 @@ struct ReminderItemView: View {
                 })
                     .foregroundColor(.gray)
                     .font(.callout)
+
+                if let date = date, date < currentDate {
+                    Text(date, formatter: itemFormatter)
+                        .foregroundColor(.red)
+                }
 
                 if showSettings {
                     ReminderSettingsView(date: $date, priority: $priority)

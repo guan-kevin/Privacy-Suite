@@ -10,8 +10,6 @@ import SwiftUI
 @main
 struct Privacy_SuiteApp: App {
     let persistenceController = PersistenceController.shared
-
-    @Environment(\.scenePhase) var scenePhase
     @StateObject var noteStorage: NoteItemStorage
     @StateObject var reminderStorage: ReminderItemStorage
     @StateObject var lockedViewModel = LockedViewModel()
@@ -42,11 +40,6 @@ struct Privacy_SuiteApp: App {
                         noteStorage.fetchNotes()
                         reminderStorage.fetchList()
                     }
-            }
-        }
-        .onChange(of: scenePhase) { value in
-            if value == .background {
-                persistenceController.save()
             }
         }
     }

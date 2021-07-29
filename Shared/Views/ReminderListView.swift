@@ -26,7 +26,7 @@ struct ReminderListView: View {
     }
 
     var content: some View {
-        ReminderFilteredListView(showCompleted: showCompleted, item: item)
+        ReminderFilteredListView(title: item.name ?? "", showCompleted: showCompleted, item: item)
             .toolbar {
                 ToolbarItemGroup(placement: getToolbarItemPlacement()) {
                     Button(action: {
@@ -54,9 +54,13 @@ struct ReminderListView: View {
 }
 
 struct ReminderFilteredListView: View {
+    let title: String
     @FetchRequest var reminders: FetchedResults<ReminderItem>
+    @State var currentDate = Date()
+    let timer = Timer.publish(every: 60, tolerance: 30, on: .main, in: .common).autoconnect()
 
-    init(showCompleted: Bool, item: ReminderListItem) {
+    init(title: String, showCompleted: Bool, item: ReminderListItem) {
+        self.title = title
         var predicate = NSPredicate(format: "list == %@", item)
 
         if !showCompleted {
@@ -74,15 +78,46 @@ struct ReminderFilteredListView: View {
         )
     }
 
+    #if os(iOS)
     var body: some View {
         if reminders.count == 0 {
             Text("No reminder in this list")
         } else {
             List {
                 ForEach(reminders) { reminder in
-                    ReminderItemView(item: reminder)
+                    ReminderItemView(item: reminder, currentDate: currentDate)
                 }
+            }
+            .onReceive(timer) { result in
+                currentDate = result
+            }
+            .navigationTitle(title)
+        }
+    }
+
+    #elseif os(macOS)
+    @State var viewDidAppear = false
+    var body: some View {
+        if reminders.count == 0 {
+            Text("No reminder in this list")
+        } else {
+            ScrollView {
+                if viewDidAppear {
+                    LazyVStack {
+                        ForEach(reminders) { reminder in
+                            ReminderItemView(item: reminder, currentDate: currentDate)
+                        }
+                    }
+                }
+            }
+            .onAppear {
+                // fixed action tried to update multiple times per frame.
+                viewDidAppear = true
+            }
+            .onReceive(timer) { result in
+                currentDate = result
             }
         }
     }
+    #endif
 }
