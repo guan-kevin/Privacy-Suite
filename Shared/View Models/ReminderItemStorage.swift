@@ -36,7 +36,7 @@ class ReminderItemStorage: NSObject, ObservableObject {
     }
 
     func fetchList() {
-        print("fetchList")
+        print("Fetching Reminders List")
         do {
             try controller.performFetch()
             list = controller.fetchedObjects ?? []

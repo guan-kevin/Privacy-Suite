@@ -17,9 +17,25 @@ struct RemindersView: View {
     var body: some View {
         Group {
             if storage.list.count == 0 {
-                Text("You don't have any list")
-                    .multilineTextAlignment(.center)
-                    .font(.headline)
+                VStack(spacing: 0) {
+                    Spacer()
+                    Text("You don't have any list")
+                        .multilineTextAlignment(.center)
+                        .font(.headline)
+                    Spacer()
+                    HStack {
+                        Button(action: {
+                            showAddList = true
+                        }) {
+                            Label("Add List", systemImage: "plus.circle")
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(8)
+                        .foregroundColor(.gray)
+
+                        Spacer()
+                    }
+                }
             } else {
                 VStack(spacing: 0) {
                     List(selection: self.$storage.selection) {

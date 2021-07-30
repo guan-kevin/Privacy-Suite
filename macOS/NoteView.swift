@@ -7,7 +7,6 @@
 
 import Combine
 import SwiftUI
-import SwiftUIX
 
 struct NoteView: View {
     @EnvironmentObject var storage: NoteItemStorage

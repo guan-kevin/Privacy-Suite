@@ -44,7 +44,7 @@ extension ReminderItem: Identifiable {
     }
 
     func getNotes() -> String {
-        if decryptedNotes == nil || decryptedNotes != notes {
+        if decryptedNotes == nil || encryptedNotes != notes {
             encryptedNotes = notes
             decryptedNotes = EncryptionHelper.decryptString(encrypted: notes, withPassword: ValetController.getPassword().0)
         }

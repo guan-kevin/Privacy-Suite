@@ -12,6 +12,7 @@ struct Privacy_SuiteApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var noteStorage: NoteItemStorage
     @StateObject var reminderStorage: ReminderItemStorage
+    @StateObject var calendarStorage: CalendarItemStorage
     @StateObject var lockedViewModel = LockedViewModel()
 
     init() {
@@ -20,6 +21,9 @@ struct Privacy_SuiteApp: App {
 
         let reminderStorage = ReminderItemStorage(managedObjectContext: PersistenceController.shared.container.viewContext)
         self._reminderStorage = StateObject(wrappedValue: reminderStorage)
+
+        let calendarStorage = CalendarItemStorage(managedObjectContext: PersistenceController.shared.container.viewContext)
+        self._calendarStorage = StateObject(wrappedValue: calendarStorage)
     }
 
     var body: some Scene {
@@ -36,9 +40,11 @@ struct Privacy_SuiteApp: App {
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .environmentObject(noteStorage)
                     .environmentObject(reminderStorage)
+                    .environmentObject(calendarStorage)
                     .onAppear {
                         noteStorage.fetchNotes()
                         reminderStorage.fetchList()
+                        calendarStorage.fetchList()
                     }
             }
         }

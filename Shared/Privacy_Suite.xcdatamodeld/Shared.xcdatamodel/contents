@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CalendarEventItem" representedClassName="CalendarEventItem" syncable="YES">
+        <attribute name="end" attributeType="String" defaultValueString="0"/>
+        <attribute name="start" attributeType="String" defaultValueString="0"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CalendarListItem" inverseName="events" inverseEntity="CalendarListItem"/>
+    </entity>
+    <entity name="CalendarListItem" representedClassName="CalendarListItem" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CalendarEventItem" inverseName="list" inverseEntity="CalendarEventItem"/>
+    </entity>
     <entity name="ConfigItem" representedClassName="ConfigItem" syncable="YES" codeGenerationType="class">
         <attribute name="password" attributeType="String" defaultValueString=""/>
     </entity>
@@ -26,6 +37,8 @@
         <relationship name="reminders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReminderItem" inverseName="list" inverseEntity="ReminderItem"/>
     </entity>
     <elements>
+        <element name="CalendarEventItem" positionX="-54" positionY="81" width="128" height="89"/>
+        <element name="CalendarListItem" positionX="-63" positionY="72" width="128" height="74"/>
         <element name="ConfigItem" positionX="-26.29931640625" positionY="18" width="128" height="44"/>
         <element name="Item" positionX="-1.7559814453125" positionY="-91.00421142578125" width="128" height="44"/>
         <element name="NoteItem" positionX="198.0943603515625" positionY="-9.24005126953125" width="128" height="103"/>
