@@ -9,11 +9,28 @@ import SwiftUI
 
 struct CalendarDayView: View {
     let day: CalendarDate
+    let currentDate: String
 
     var body: some View {
-        let number = Calendar.current.component(.day, from: day.date)
-        Text("\(number == 1 ? day.date.month + " " : "")\(number)")
-            .font(.system(.title2, design: .rounded))
-            .foregroundColor(day.currentMonth ? .white : .gray)
+        HStack {
+            Spacer()
+            VStack {
+                let display = Calendar.current.dateComponents([.year, .month, .day], from: day.date)
+
+                if currentDate == "\(display.year!):\(display.month!)\(display.day!)" {
+                    Text("\(display.day == 1 ? day.date.month + " " : "")\(display.day!)")
+                        .font(.system(.title2, design: .rounded))
+                        .foregroundColor(.red)
+                        .padding(5)
+                } else {
+                    Text("\(display.day == 1 ? day.date.month + " " : "")\(display.day!)")
+                        .font(.system(.title2, design: .rounded))
+                        .foregroundColor(day.currentMonth ? .white : .gray)
+                        .padding(5)
+                }
+
+                Spacer()
+            }
+        }
     }
 }

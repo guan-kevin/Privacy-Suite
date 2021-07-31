@@ -12,6 +12,8 @@ struct CalendarTableView: View {
     @State var date = Date()
     @State var days: [CalendarDate] = []
 
+    var currentDate: String
+
     let weeks = [
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
     ]
@@ -41,17 +43,9 @@ struct CalendarTableView: View {
             GeometryReader { proxy in
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(days) { day in
-                        HStack {
-                            Spacer()
-                            VStack {
-                                CalendarDayView(day: day)
-                                    .padding(5)
-
-                                Spacer()
-                            }
-                        }
-                        .background(Rectangle().stroke().foregroundColor(Color.gray))
-                        .frame(height: proxy.size.height / 6)
+                        CalendarDayView(day: day, currentDate: currentDate)
+                            .background(Rectangle().stroke().foregroundColor(Color.gray))
+                            .frame(height: proxy.size.height / 6)
                     }
                 }
                 .frame(height: proxy.size.height)
@@ -80,7 +74,7 @@ struct CalendarTableView: View {
                 }
             }
         }
-        .navigationTitle(String(date.fullMonth) + " " + String(Calendar.current.component(.year, from: date)))
+        .navigationTitle("\(date.fullMonth) \(String(Calendar.current.component(.year, from: date)))")
     }
 
     func prepareCalendar() {
