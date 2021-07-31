@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2293BE26B5D5D800A63218 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293BD26B5D5D800A63218 /* Date+Extension.swift */; };
+		0A2293BF26B5D5D800A63218 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293BD26B5D5D800A63218 /* Date+Extension.swift */; };
+		0A2293C226B5DEAB00A63218 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */; };
+		0A2293C326B5DEAB00A63218 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */; };
+		0A2293C526B5E25E00A63218 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293C426B5E25E00A63218 /* CalendarDate.swift */; };
+		0A2293C626B5E25E00A63218 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293C426B5E25E00A63218 /* CalendarDate.swift */; };
 		0A32693526A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */; };
@@ -32,8 +38,6 @@
 		0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */; };
 		0A3BC05C26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
 		0A3BC05D26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
-		0A3BC06326A8C9E70030EFEB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC06226A8C9E70030EFEB /* Note.swift */; };
-		0A3BC06426A8C9E70030EFEB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC06226A8C9E70030EFEB /* Note.swift */; };
 		0A9EFB6126A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
 		0A9EFB6226A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
 		0A9EFB6526A902CA003A72BF /* LockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */; };
@@ -81,6 +85,9 @@
 
 /* Begin PBXFileReference section */
 		0561C12412AB7BC2BF1832B2 /* Pods-Privacy Suite (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Privacy Suite (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Privacy Suite (macOS)/Pods-Privacy Suite (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		0A2293BD26B5D5D800A63218 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		0A2293C426B5E25E00A63218 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		0A32692026A5292F00D99744 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy_SuiteApp.swift; sourceTree = "<group>"; };
 		0A32692226A5292F00D99744 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,7 +110,6 @@
 		0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionHelper.swift; sourceTree = "<group>"; };
 		0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		0A3BC06226A8C9E70030EFEB /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		0A9EFB6026A9018C003A72BF /* ValetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValetController.swift; sourceTree = "<group>"; };
 		0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedViewModel.swift; sourceTree = "<group>"; };
 		0A9EFB6826A9292B003A72BF /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -159,6 +165,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A2293C026B5D5DC00A63218 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A2293BD26B5D5D800A63218 /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0A32691926A5292F00D99744 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +194,7 @@
 				0A9EFB6726A902D4003A72BF /* View Models */,
 				0A3BC06526A8CA270030EFEB /* Models */,
 				0A9EFB6326A90221003A72BF /* Views */,
+				0A2293C026B5D5DC00A63218 /* Extensions */,
 				0A32692326A5292F00D99744 /* Persistence.swift */,
 				0A32692426A5293300D99744 /* Assets.xcassets */,
 				0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */,
@@ -224,6 +239,7 @@
 				0AD4234C26AC923000D9C91A /* ReminderItemView.swift */,
 				0AD4231826AA1E7B00D9C91A /* CalendarView.swift */,
 				0AAD56D026B3C97E007BDD75 /* CalendarTableView.swift */,
+				0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);
@@ -261,7 +277,7 @@
 		0A3BC06526A8CA270030EFEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0A3BC06226A8C9E70030EFEB /* Note.swift */,
+				0A2293C426B5E25E00A63218 /* CalendarDate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -510,6 +526,8 @@
 				0AD4235D26AE60C300D9C91A /* ReminderItemView.swift in Sources */,
 				0A32693B26A5293300D99744 /* Persistence.swift in Sources */,
 				0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
+				0A2293C226B5DEAB00A63218 /* CalendarDayView.swift in Sources */,
+				0A2293BE26B5D5D800A63218 /* Date+Extension.swift in Sources */,
 				0A9EFB6C26A929D9003A72BF /* LockedView.swift in Sources */,
 				0A3BC04D26A7F4CB0030EFEB /* NoteItemStorage.swift in Sources */,
 				0A32693926A5293300D99744 /* ContentView.swift in Sources */,
@@ -519,7 +537,7 @@
 				0A3BC05C26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */,
 				0A9EFB6526A902CA003A72BF /* LockedViewModel.swift in Sources */,
 				0A9EFB6F26A92B82003A72BF /* NotesView.swift in Sources */,
-				0A3BC06326A8C9E70030EFEB /* Note.swift in Sources */,
+				0A2293C526B5E25E00A63218 /* CalendarDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,8 +566,9 @@
 				0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
 				0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
 				0A32695226A53F4A00D99744 /* ContentView.swift in Sources */,
+				0A2293C326B5DEAB00A63218 /* CalendarDayView.swift in Sources */,
+				0A2293BF26B5D5D800A63218 /* Date+Extension.swift in Sources */,
 				0A9EFB6626A902CA003A72BF /* LockedViewModel.swift in Sources */,
-				0A3BC06426A8C9E70030EFEB /* Note.swift in Sources */,
 				0A9EFB6226A9018C003A72BF /* ValetController.swift in Sources */,
 				0A32695526A5422000D99744 /* NoteView.swift in Sources */,
 				0A3BC05126A7F8740030EFEB /* LazyView.swift in Sources */,
@@ -558,6 +577,7 @@
 				0A3BC05426A8BC540030EFEB /* LockedView.swift in Sources */,
 				0A32694F26A53E1E00D99744 /* NotesView.swift in Sources */,
 				0A32693826A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
+				0A2293C626B5E25E00A63218 /* CalendarDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

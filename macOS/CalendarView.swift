@@ -41,7 +41,7 @@ struct CalendarView: View {
                 VStack(spacing: 0) {
                     List(selection: self.$storage.selection) {
                         ForEach(storage.list) { item in
-                            NavigationLink(destination: LazyView(CalendarTableView()), tag: item.id, selection: $storage.selection) {
+                            NavigationLink(destination: LazyView(CalendarTableView(item: item)), tag: item.id, selection: $storage.selection) {
                                 Text(item.listName)
                             }
                             .contextMenu {
