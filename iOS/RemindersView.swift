@@ -73,12 +73,16 @@ struct RemindersView: View {
         })
         .onAppear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.list.first?.id
+                if storage.selection == nil {
+                    storage.selection = storage.list.first?.id
+                }
             }
         }
         .onDisappear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.defaultSelection
+                if storage.selection == nil {
+                    storage.selection = storage.defaultSelection
+                }
             }
         }
         .toolbar {

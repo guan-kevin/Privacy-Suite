@@ -40,13 +40,8 @@ class CalendarItemStorage: NSObject, ObservableObject {
         controller.delegate = self
 
         #if os(iOS)
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         checkOrientation()
         #endif
-    }
-
-    @objc func orientationChanged(notification: NSNotification) {
-        checkOrientation()
     }
 
     func checkOrientation() {

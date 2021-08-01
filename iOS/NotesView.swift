@@ -57,12 +57,16 @@ struct NotesView: View {
         })
         .onAppear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.notes.first?.id
+                if storage.selection == nil {
+                    storage.selection = storage.notes.first?.id
+                }
             }
         }
         .onDisappear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.defaultSelection
+                if storage.selection == nil {
+                    storage.selection = storage.defaultSelection
+                }
             }
         }
     }

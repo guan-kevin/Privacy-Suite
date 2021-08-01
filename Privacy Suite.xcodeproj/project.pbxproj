@@ -16,6 +16,8 @@
 		0A2293CA26B668E700A63218 /* CalendarTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293C926B668E700A63218 /* CalendarTableView.swift */; };
 		0A2293CE26B66DC300A63218 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293CB26B66DBD00A63218 /* CalendarDayView.swift */; };
 		0A2293CF26B67DF700A63218 /* CalendarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD56CD26B3C45C007BDD75 /* CalendarItemStorage.swift */; };
+		0A2293D126B7256C00A63218 /* CalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D026B7256C00A63218 /* CalendarListView.swift */; };
+		0A2293D226B7256C00A63218 /* CalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D026B7256C00A63218 /* CalendarListView.swift */; };
 		0A32693526A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */; };
@@ -90,6 +92,7 @@
 		0A2293C426B5E25E00A63218 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		0A2293C926B668E700A63218 /* CalendarTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableView.swift; sourceTree = "<group>"; };
 		0A2293CB26B66DBD00A63218 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		0A2293D026B7256C00A63218 /* CalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListView.swift; sourceTree = "<group>"; };
 		0A32692026A5292F00D99744 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy_SuiteApp.swift; sourceTree = "<group>"; };
 		0A32692226A5292F00D99744 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -292,6 +295,7 @@
 				0A3BC04F26A7F8740030EFEB /* LazyView.swift */,
 				0AD4233F26AA41D800D9C91A /* DialogTextField.swift */,
 				0AD4234226AA4A6700D9C91A /* ReminderListView.swift */,
+				0A2293D026B7256C00A63218 /* CalendarListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,6 +533,7 @@
 				0A2293C826B6685400A63218 /* CalendarView.swift in Sources */,
 				0AD4235D26AE60C300D9C91A /* ReminderItemView.swift in Sources */,
 				0A32693B26A5293300D99744 /* Persistence.swift in Sources */,
+				0A2293D126B7256C00A63218 /* CalendarListView.swift in Sources */,
 				0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */,
 				0A2293CE26B66DC300A63218 /* CalendarDayView.swift in Sources */,
 				0A2293BE26B5D5D800A63218 /* Date+Extension.swift in Sources */,
@@ -569,6 +574,7 @@
 				0AD4235826AE3DAA00D9C91A /* ReminderItemView.swift in Sources */,
 				0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
 				0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,
+				0A2293D226B7256C00A63218 /* CalendarListView.swift in Sources */,
 				0A32695226A53F4A00D99744 /* ContentView.swift in Sources */,
 				0A2293C326B5DEAB00A63218 /* CalendarDayView.swift in Sources */,
 				0A2293BF26B5D5D800A63218 /* Date+Extension.swift in Sources */,

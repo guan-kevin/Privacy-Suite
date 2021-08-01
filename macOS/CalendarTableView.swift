@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarTableView: View {
-    @State var item: CalendarListItem
+    @State var events: [CalendarEventItem]
     @State var date = Date()
     @State var days: [CalendarDate] = []
 
@@ -87,6 +87,8 @@ struct CalendarTableView: View {
         }
 
         days = temp
+
+        // fetch all events within this month
     }
 
     func lastMonth() {

@@ -14,8 +14,6 @@ struct CalendarView: View {
     @State var showAddError = false
     @State var selectedDeleteList: CalendarListItem? = nil
 
-    @State var currentDate = ""
-
     var body: some View {
         Group {
             if storage.list.count == 0 {
@@ -26,24 +24,12 @@ struct CalendarView: View {
                         .multilineTextAlignment(.center)
                         .font(.headline)
                     Spacer()
-                    HStack {
-                        Button(action: {
-                            showAddList = true
-                        }) {
-                            Label("Add List", systemImage: "plus.circle")
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(8)
-                        .foregroundColor(.gray)
-
-                        Spacer()
-                    }
                 }
             } else {
                 VStack(spacing: 0) {
                     List(selection: self.$storage.selection) {
                         ForEach(storage.list) { item in
-                            NavigationLink(destination: LazyView(CalendarTableView(item: item, currentDate: currentDate)), tag: item.id, selection: $storage.selection) {
+                            NavigationLink(destination: LazyView(CalendarListView(item: item)), tag: item.id, selection: $storage.selection) {
                                 Text(item.listName)
                             }
                             .contextMenu {
@@ -55,19 +41,7 @@ struct CalendarView: View {
                             }
                         }
                     }
-
-                    HStack {
-                        Button(action: {
-                            showAddList = true
-                        }) {
-                            Label("Add Calendar", systemImage: "plus.circle")
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(8)
-                        .foregroundColor(.gray)
-
-                        Spacer()
-                    }
+                    .listStyle(InsetGroupedListStyle())
                 }
             }
         }
@@ -106,15 +80,25 @@ struct CalendarView: View {
         })
         .onAppear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.list.first?.id
+                if storage.selection == nil {
+                    storage.selection = storage.list.first?.id
+                }
             }
-
-            let current = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-            currentDate = "\(current.year!):\(current.month!)\(current.day!)"
         }
         .onDisappear {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                storage.selection = storage.defaultSelection
+                if storage.selection == nil {
+                    storage.selection = storage.defaultSelection
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showAddList.toggle()
+                }) {
+                    Image(systemName: "plus")
+                }
             }
         }
     }

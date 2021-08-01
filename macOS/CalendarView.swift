@@ -14,8 +14,6 @@ struct CalendarView: View {
     @State var showAddError = false
     @State var selectedDeleteList: CalendarListItem? = nil
 
-    @State var currentDate = ""
-
     var body: some View {
         Group {
             if storage.list.count == 0 {
@@ -43,7 +41,7 @@ struct CalendarView: View {
                 VStack(spacing: 0) {
                     List(selection: self.$storage.selection) {
                         ForEach(storage.list) { item in
-                            NavigationLink(destination: LazyView(CalendarTableView(item: item, currentDate: currentDate)), tag: item.id, selection: $storage.selection) {
+                            NavigationLink(destination: LazyView(CalendarListView(item: item)), tag: item.id, selection: $storage.selection) {
                                 Text(item.listName)
                             }
                             .contextMenu {
@@ -104,9 +102,6 @@ struct CalendarView: View {
         })
         .onAppear {
             storage.selection = storage.list.first?.id
-
-            let current = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-            currentDate = "\(current.year!):\(current.month!)\(current.day!)"
         }
         .onDisappear {
             storage.selection = storage.defaultSelection

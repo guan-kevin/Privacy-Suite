@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarTableView: View {
     @EnvironmentObject var storage: CalendarItemStorage
 
-    @State var item: CalendarListItem
+    @State var events: [CalendarEventItem]
     @State var date = Date()
     @State var days: [CalendarDate] = []
 
@@ -35,7 +35,6 @@ struct CalendarTableView: View {
     var body: some View {
         Group {
             // Portrait
-            let test = print("REND")
             if !storage.isLandscape {
                 portraitView
             } else {
