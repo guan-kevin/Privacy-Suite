@@ -22,7 +22,7 @@ struct CalendarView: View {
                 VStack(spacing: 0) {
                     Spacer()
 
-                    Text("You don't have any list")
+                    Text("You don't have any calendar")
                         .multilineTextAlignment(.center)
                         .font(.headline)
                     Spacer()
@@ -30,7 +30,7 @@ struct CalendarView: View {
                         Button(action: {
                             showAddList = true
                         }) {
-                            Label("Add List", systemImage: "plus.circle")
+                            Label("Add Calendar", systemImage: "plus.circle")
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(8)
@@ -60,7 +60,7 @@ struct CalendarView: View {
                         Button(action: {
                             showAddList = true
                         }) {
-                            Label("Add List", systemImage: "plus.circle")
+                            Label("Add Calendar", systemImage: "plus.circle")
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(8)
@@ -73,7 +73,7 @@ struct CalendarView: View {
         }
         .background(
             Group {
-                NavigationLink(destination: Text("Select a list!"), tag: storage.defaultSelection, selection: $storage.selection) {
+                NavigationLink(destination: Text("Select a calendar!"), tag: storage.defaultSelection, selection: $storage.selection) {
                     EmptyView()
                 }
                 .hidden()
@@ -81,20 +81,20 @@ struct CalendarView: View {
                 Text("")
                     .frame(width: 0, height: 0)
                     .alert(isPresented: $showAddError, content: {
-                        Alert(title: Text("List already exists"))
+                        Alert(title: Text("Calendar already exists"))
                     })
 
                 Text("")
                     .frame(width: 0, height: 0)
                     .alert(item: $selectedDeleteList, content: { item in
-                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the events inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the events inside this calendar?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
                             deleteList(name: item.listName)
                         }))
                     })
             }
         )
         .sheet(isPresented: $showAddList, content: {
-            DialogTextField(title: "New List", textFieldTitle: "Name") { result in
+            DialogTextField(title: "New Calendar", textFieldTitle: "Name") { result in
                 guard result != "" else {
                     return
                 }
