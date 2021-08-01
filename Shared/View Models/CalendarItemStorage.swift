@@ -8,6 +8,9 @@
 import Combine
 import CoreData
 import Foundation
+#if os(iOS)
+import UIKit
+#endif
 
 class CalendarItemStorage: NSObject, ObservableObject {
     @Published var list: [CalendarListItem] = []
@@ -21,6 +24,8 @@ class CalendarItemStorage: NSObject, ObservableObject {
     let detector = PassthroughSubject<Void, Never>()
     let publisher: AnyPublisher<Void, Never>
 
+    @Published var isLandscape = false
+
     init(managedObjectContext: NSManagedObjectContext) {
         print("Storage INITING")
         controller = NSFetchedResultsController(fetchRequest: CalendarListItem.getFetchRequest,
@@ -33,6 +38,29 @@ class CalendarItemStorage: NSObject, ObservableObject {
 
         super.init()
         controller.delegate = self
+
+        #if os(iOS)
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+        checkOrientation()
+        #endif
+    }
+
+    @objc func orientationChanged(notification: NSNotification) {
+        checkOrientation()
+    }
+
+    func checkOrientation() {
+        #if os(iOS)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            if UIScreen.main.bounds.width > UIScreen.main.bounds.height {
+                guard self.isLandscape == false else { return }
+                self.isLandscape = true
+            } else {
+                guard self.isLandscape == true else { return }
+                self.isLandscape = false
+            }
+        }
+        #endif
     }
 
     func fetchList() {

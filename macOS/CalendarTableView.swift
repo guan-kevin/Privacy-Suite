@@ -36,7 +36,6 @@ struct CalendarTableView: View {
 
                     Text(week)
                         .padding(.trailing, 10)
-                        .padding(.top, 5)
                         .font(.system(size: 20, weight: .light, design: .rounded))
                 }
             }
@@ -51,6 +50,7 @@ struct CalendarTableView: View {
                 .frame(height: proxy.size.height)
             }
         }
+        .navigationTitle("\(date.fullMonth) \(String(Calendar.current.component(.year, from: date)))")
         .onAppear {
             prepareCalendar()
         }
@@ -74,7 +74,6 @@ struct CalendarTableView: View {
                 }
             }
         }
-        .navigationTitle("\(date.fullMonth) \(String(Calendar.current.component(.year, from: date)))")
     }
 
     func prepareCalendar() {
