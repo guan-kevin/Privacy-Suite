@@ -87,7 +87,7 @@ struct CalendarView: View {
                 Text("")
                     .frame(width: 0, height: 0)
                     .alert(item: $selectedDeleteList, content: { item in
-                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the reminders inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+                        Alert(title: Text("Are you sure you want to delete \(item.listName) and all the events inside this list?"), message: Text("You can’t undo this action."), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
                             deleteList(name: item.listName)
                         }))
                     })
