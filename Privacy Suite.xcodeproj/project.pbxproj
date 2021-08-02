@@ -18,6 +18,8 @@
 		0A2293CF26B67DF700A63218 /* CalendarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD56CD26B3C45C007BDD75 /* CalendarItemStorage.swift */; };
 		0A2293D126B7256C00A63218 /* CalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D026B7256C00A63218 /* CalendarListView.swift */; };
 		0A2293D226B7256C00A63218 /* CalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D026B7256C00A63218 /* CalendarListView.swift */; };
+		0A2293D426B7581A00A63218 /* CalendarEventAddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D326B7581A00A63218 /* CalendarEventAddingView.swift */; };
+		0A2293D526B7581A00A63218 /* CalendarEventAddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2293D326B7581A00A63218 /* CalendarEventAddingView.swift */; };
 		0A32693526A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A32691F26A5292F00D99744 /* Privacy_Suite.xcdatamodeld */; };
 		0A32693726A5293300D99744 /* Privacy_SuiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */; };
@@ -93,6 +95,7 @@
 		0A2293C926B668E700A63218 /* CalendarTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableView.swift; sourceTree = "<group>"; };
 		0A2293CB26B66DBD00A63218 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		0A2293D026B7256C00A63218 /* CalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListView.swift; sourceTree = "<group>"; };
+		0A2293D326B7581A00A63218 /* CalendarEventAddingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventAddingView.swift; sourceTree = "<group>"; };
 		0A32692026A5292F00D99744 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		0A32692126A5292F00D99744 /* Privacy_SuiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy_SuiteApp.swift; sourceTree = "<group>"; };
 		0A32692226A5292F00D99744 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 				0AD4231826AA1E7B00D9C91A /* CalendarView.swift */,
 				0AAD56D026B3C97E007BDD75 /* CalendarTableView.swift */,
 				0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */,
+				0A2293D326B7581A00A63218 /* CalendarEventAddingView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);
@@ -525,6 +529,7 @@
 				0AD88D4326B3BAAF001C0181 /* CalendarListItem+CoreDataProperties.swift in Sources */,
 				0AD4234326AA4A6700D9C91A /* ReminderListView.swift in Sources */,
 				0A3BC05626A8BCFC0030EFEB /* EncryptionHelper.swift in Sources */,
+				0A2293D426B7581A00A63218 /* CalendarEventAddingView.swift in Sources */,
 				0AD88D4526B3BAAF001C0181 /* CalendarEventItem+CoreDataClass.swift in Sources */,
 				0AD4234026AA41D800D9C91A /* DialogTextField.swift in Sources */,
 				0AD88D4726B3BAAF001C0181 /* CalendarEventItem+CoreDataProperties.swift in Sources */,
@@ -566,6 +571,7 @@
 				0AD4234426AA4A6700D9C91A /* ReminderListView.swift in Sources */,
 				0AD88D4426B3BAAF001C0181 /* CalendarListItem+CoreDataProperties.swift in Sources */,
 				0AD4231F26AA1EA100D9C91A /* CalendarView.swift in Sources */,
+				0A2293D526B7581A00A63218 /* CalendarEventAddingView.swift in Sources */,
 				0AD4234126AA41D800D9C91A /* DialogTextField.swift in Sources */,
 				0AD88D4626B3BAAF001C0181 /* CalendarEventItem+CoreDataClass.swift in Sources */,
 				0AD4231626AA1E6300D9C91A /* RemindersView.swift in Sources */,

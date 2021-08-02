@@ -11,6 +11,8 @@ struct CalendarDayView: View {
     let day: CalendarDate
     let currentDate: String
 
+    @State var showNewEventPopup = false
+
     var body: some View {
         HStack {
             Spacer()
@@ -32,5 +34,12 @@ struct CalendarDayView: View {
                 Spacer()
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture(count: 2, perform: {
+            showNewEventPopup = true
+        })
+        .popover(isPresented: $showNewEventPopup, content: {
+            CalendarEventAddingView(input: day.date)
+        })
     }
 }

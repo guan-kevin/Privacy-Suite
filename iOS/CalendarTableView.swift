@@ -22,6 +22,10 @@ struct CalendarTableView: View {
         "S", "M", "T", "W", "T", "F", "S"
     ]
 
+    let longWeeks = [
+        "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+    ]
+
     let columns = [
         GridItem(.flexible(), spacing: 0, alignment: .center),
         GridItem(.flexible(), spacing: 0, alignment: .center),
@@ -158,7 +162,7 @@ struct CalendarTableView: View {
     var landscapeView: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                ForEach(weeks, id: \.self) { week in
+                ForEach(longWeeks, id: \.self) { week in
                     Spacer()
 
                     Text(week)
