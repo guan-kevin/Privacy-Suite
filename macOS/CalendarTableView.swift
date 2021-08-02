@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarTableView: View {
+    @ObservedObject var item: CalendarListItem
     @State var events: [CalendarEventItem]
     @State var date = Date()
     @State var days: [CalendarDate] = []
@@ -42,7 +43,7 @@ struct CalendarTableView: View {
             GeometryReader { proxy in
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(days) { day in
-                        CalendarDayView(day: day, currentDate: currentDate)
+                        CalendarDayView(item: item, day: day, currentDate: currentDate)
                             .background(Rectangle().stroke().foregroundColor(Color.gray))
                             .frame(height: proxy.size.height / 6)
                     }
@@ -53,6 +54,11 @@ struct CalendarTableView: View {
         .navigationTitle("\(date.fullMonth) \(String(Calendar.current.component(.year, from: date)))")
         .onAppear {
             prepareCalendar()
+            for e in events {
+                print(e.getTitle())
+                print(e.getStart())
+                print(e.getEnd())
+            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {

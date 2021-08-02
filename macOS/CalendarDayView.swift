@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarDayView: View {
+    @ObservedObject var item: CalendarListItem
     let day: CalendarDate
     let currentDate: String
 
@@ -39,7 +40,7 @@ struct CalendarDayView: View {
             showNewEventPopup = true
         })
         .popover(isPresented: $showNewEventPopup, content: {
-            CalendarEventAddingView(input: day.date)
+            CalendarEventAddingView(item: item, input: day.date)
         })
     }
 }

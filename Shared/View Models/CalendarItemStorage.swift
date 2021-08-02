@@ -105,6 +105,25 @@ class CalendarItemStorage: NSObject, ObservableObject {
             }
         }
     }
+
+    func addEvent(list: CalendarListItem, title: String, starts: Date, ends: Date) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let password = ValetController.getPassword()
+            let encryptedTitle = EncryptionHelper.encryptString(input: title, withPassword: password.0)
+            let encryptedStart = EncryptionHelper.encryptString(input: String(Int(starts.timeIntervalSince1970)), withPassword: password.0)
+            let encryptedEnd = EncryptionHelper.encryptString(input: String(Int(ends.timeIntervalSince1970)), withPassword: password.0)
+
+            PersistenceController.shared.container.viewContext.perform {
+                let event = CalendarEventItem(context: PersistenceController.shared.container.viewContext)
+                event.title = encryptedTitle
+                event.start = encryptedStart
+                event.end = encryptedEnd
+                list.addToEvents(event)
+
+                PersistenceController.shared.save()
+            }
+        }
+    }
 }
 
 extension CalendarItemStorage: NSFetchedResultsControllerDelegate {

@@ -25,8 +25,11 @@ struct CalendarListView: View {
 
 struct CalendarFilteredListView: View {
     let title: String
+
     @FetchRequest var events: FetchedResults<CalendarEventItem>
     @State var currentDate = ""
+    @ObservedObject var item: CalendarListItem
+
     let timer = Timer.publish(every: 60, tolerance: 30, on: .main, in: .common).autoconnect()
 
     init(title: String, item: CalendarListItem) {
@@ -38,10 +41,12 @@ struct CalendarFilteredListView: View {
             sortDescriptors: [],
             predicate: predicate
         )
+
+        _item = ObservedObject(wrappedValue: item)
     }
 
     var body: some View {
-        CalendarTableView(events: events.map { $0 }, currentDate: currentDate)
+        CalendarTableView(item: item, events: events.map { $0 }, currentDate: currentDate)
             .onReceive(timer) { result in
                 let current = Calendar.current.dateComponents([.year, .month, .day], from: result)
                 currentDate = "\(current.year!):\(current.month!)\(current.day!)"

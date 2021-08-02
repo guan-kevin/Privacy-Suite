@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CalendarEventAddingView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var storage: CalendarItemStorage
+    @ObservedObject var item: CalendarListItem
 
     let input: Date
 
@@ -62,6 +64,7 @@ struct CalendarEventAddingView: View {
 
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
+                    storage.addEvent(list: item, title: title, starts: start, ends: end)
                 }) {
                     Text("Add")
                 }
