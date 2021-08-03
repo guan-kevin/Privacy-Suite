@@ -9,11 +9,14 @@ import SwiftUI
 
 struct CalendarTableView: View {
     @ObservedObject var item: CalendarListItem
-    @State var events: [CalendarEventItem]
+
     @State var date = Date()
     @State var days: [CalendarDate] = []
+//    var model: CalendarTableViewModel
 
     var currentDate: String
+
+    var events: [CalendarEventItem] = []
 
     let weeks = [
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
@@ -29,8 +32,16 @@ struct CalendarTableView: View {
         GridItem(.flexible(), spacing: 0, alignment: .center)
     ]
 
+    init(item: CalendarListItem, events: [CalendarEventItem], currentDate: String) {
+        _item = ObservedObject(wrappedValue: item)
+//        model = CalendarTableViewModel(events: events) // StateObject(wrappedValue: CalendarTableViewModel(events: events))
+        self.currentDate = currentDate
+        self.events = events
+    }
+
     var body: some View {
         VStack(spacing: 0) {
+            let x = print("TABLE \(events.count)")
             HStack(spacing: 0) {
                 ForEach(weeks, id: \.self) { week in
                     Spacer()
@@ -43,7 +54,7 @@ struct CalendarTableView: View {
             GeometryReader { proxy in
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(days) { day in
-                        CalendarDayView(item: item, day: day, currentDate: currentDate)
+                        CalendarDayView(allEvents: events, item: item, day: day, currentDate: currentDate)
                             .background(Rectangle().stroke().foregroundColor(Color.gray))
                             .frame(height: proxy.size.height / 6)
                     }
@@ -54,11 +65,6 @@ struct CalendarTableView: View {
         .navigationTitle("\(date.fullMonth) \(String(Calendar.current.component(.year, from: date)))")
         .onAppear {
             prepareCalendar()
-            for e in events {
-                print(e.getTitle())
-                print(e.getStart())
-                print(e.getEnd())
-            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
