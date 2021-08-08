@@ -47,6 +47,7 @@
 		0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */; };
 		0A3BC05C26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
 		0A3BC05D26A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */; };
+		0A5400F726BFA4610015BE42 /* CalendarEventListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5400F626BFA34F0015BE42 /* CalendarEventListingView.swift */; };
 		0A9EFB6126A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
 		0A9EFB6226A9018C003A72BF /* ValetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6026A9018C003A72BF /* ValetController.swift */; };
 		0A9EFB6526A902CA003A72BF /* LockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */; };
@@ -121,6 +122,7 @@
 		0A3BC05526A8BCFC0030EFEB /* EncryptionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionHelper.swift; sourceTree = "<group>"; };
 		0A3BC05826A8C49A0030EFEB /* NoteItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A3BC05926A8C49A0030EFEB /* NoteItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0A5400F626BFA34F0015BE42 /* CalendarEventListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListingView.swift; sourceTree = "<group>"; };
 		0A9EFB6026A9018C003A72BF /* ValetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValetController.swift; sourceTree = "<group>"; };
 		0A9EFB6426A902CA003A72BF /* LockedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedViewModel.swift; sourceTree = "<group>"; };
 		0A9EFB6826A9292B003A72BF /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				0AAD56D026B3C97E007BDD75 /* CalendarTableView.swift */,
 				0A2293C126B5DEAB00A63218 /* CalendarDayView.swift */,
 				0A2293D326B7581A00A63218 /* CalendarEventAddingView.swift */,
+				0A5400F626BFA34F0015BE42 /* CalendarEventListingView.swift */,
 				0A32693326A5293300D99744 /* Info.plist */,
 				0A32693426A5293300D99744 /* macOS.entitlements */,
 			);
@@ -582,6 +585,7 @@
 				0AD4231626AA1E6300D9C91A /* RemindersView.swift in Sources */,
 				0AD4233B26AA24E700D9C91A /* ReminderItem+CoreDataProperties.swift in Sources */,
 				0AD88D4826B3BAAF001C0181 /* CalendarEventItem+CoreDataProperties.swift in Sources */,
+				0A5400F726BFA4610015BE42 /* CalendarEventListingView.swift in Sources */,
 				0AD4235826AE3DAA00D9C91A /* ReminderItemView.swift in Sources */,
 				0A3BC05B26A8C49A0030EFEB /* NoteItem+CoreDataClass.swift in Sources */,
 				0A32693626A5293300D99744 /* Privacy_Suite.xcdatamodeld in Sources */,

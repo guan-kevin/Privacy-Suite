@@ -12,7 +12,6 @@ struct CalendarTableView: View {
 
     @State var date = Date()
     @State var days: [CalendarDate] = []
-//    var model: CalendarTableViewModel
 
     var currentDate: String
 
@@ -34,14 +33,12 @@ struct CalendarTableView: View {
 
     init(item: CalendarListItem, events: [CalendarEventItem], currentDate: String) {
         _item = ObservedObject(wrappedValue: item)
-//        model = CalendarTableViewModel(events: events) // StateObject(wrappedValue: CalendarTableViewModel(events: events))
         self.currentDate = currentDate
         self.events = events
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            let x = print("TABLE \(events.count)")
             HStack(spacing: 0) {
                 ForEach(weeks, id: \.self) { week in
                     Spacer()
@@ -99,8 +96,6 @@ struct CalendarTableView: View {
         }
 
         days = temp
-
-        // fetch all events within this month
     }
 
     func lastMonth() {

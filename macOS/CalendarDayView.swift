@@ -9,15 +9,15 @@ import SwiftUI
 
 struct CalendarDayView: View {
     var allEvents: [CalendarEventItem]
-//    @ObservedObject var model: CalendarTableViewModel
     @ObservedObject var item: CalendarListItem
     let day: CalendarDate
     let currentDate: String
 
     @State var showNewEventPopup = false
+    @State var showMorePopup = false
 
     @State var events: [CalendarEventItem] = []
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             let display = Calendar.current.dateComponents([.year, .month, .day], from: day.date)
@@ -41,20 +41,51 @@ struct CalendarDayView: View {
             }
 
             if events.count > 0 {
-                Text(events.first!.getTitle())
-                    .padding(.horizontal, 5)
-                    .font(.system(size: 11))
-
-                if events.count > 1 {
-                    Text("\(events.count - 1) more...")
-                        .foregroundColor(.gray)
+                HStack {
+                    Text(events.first!.getTitle())
                         .padding(.horizontal, 5)
                         .font(.system(size: 11))
+                    Spacer()
+                }
+                .contentShape(Rectangle())
+                .onTapGesture(count: 2, perform: {
+                    print("SHOW MORE POPUP")
+                    showMorePopup = true
+                })
+
+                if events.count > 1 {
+                    HStack {
+                        Text("\(events.count - 1) more...")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 5)
+                            .font(.system(size: 11))
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture(count: 2, perform: {
+                        guard !showMorePopup else { return }
+                        showMorePopup = true
+                    })
                 }
             }
 
             Spacer()
         }
+        .background(
+            Group {
+                Text("")
+                    .frame(width: 0, height: 0)
+                    .popover(isPresented: $showNewEventPopup, content: {
+                        CalendarEventAddingView(item: item, input: day.date)
+                    })
+
+                Text("")
+                    .frame(width: 0, height: 0)
+                    .popover(isPresented: $showMorePopup, content: {
+                        CalendarEventListingView(events: events)
+                    })
+            }
+        )
         .onChange(of: allEvents, perform: { new in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 let calendar = Calendar.current
@@ -74,9 +105,6 @@ struct CalendarDayView: View {
         .contentShape(Rectangle())
         .onTapGesture(count: 2, perform: {
             showNewEventPopup = true
-        })
-        .popover(isPresented: $showNewEventPopup, content: {
-            CalendarEventAddingView(item: item, input: day.date)
         })
     }
 }
